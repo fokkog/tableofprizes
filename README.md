@@ -42,9 +42,9 @@ web.config contents:
     <handlers>
       <add name="httpPlatformHandler" path="*" verb="*" modules="httpPlatformHandler" resourceType="Unspecified" />
     </handlers>
-    <httpPlatform processPath="%JAVA_HOME\bin\java.exe"
-      arguments="-Djava.net.preferIPv4Stack=true -Dport.http=%HTTP_PLATFORM_PORT% -jar &quot;%HOME%\site\wwwroot\app.jar&quot;"
-      stdoutLogEnabled="true" startupRetryCount="2" />
+    <httpPlatform processPath="%JAVA_HOME%\bin\java.exe"
+      arguments="-Djava.net.preferIPv4Stack=true -Dserver.port=%HTTP_PLATFORM_PORT% -jar &quot;%HOME%\site\wwwroot\app.jar&quot;"
+      stdoutLogEnabled="true" startupRetryCount="1" startupTimeLimit="600" requestTimeout="00:02:00" />
   </system.webServer>
 </configuration>
 ```
