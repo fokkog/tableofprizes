@@ -10,7 +10,9 @@ Of course the real goal is to learn stuff, mainly:
 - OpenID Connect (OIDC) and its support in Azure
 - GitHub, specifically GitHub Actions for CI
 
-To bootstrap the new project I could have used [Spring Initializr](https://start.spring.io/), but I decided to go one step further and use [JHipster](https://www.jhipster.tech/). Not sure how hip this really is nowadays, but it gives me solid and secure foundation consisting of an Angular SPA front-end and a Spring Boot back-end. See [.yo-rc.json](.yo-rc.json) for initial choices.
+The application is public, but it will have to identify table managers and prize winners. I am not interested in active user management including self-registration etc. Instread I would prefer to rely on existing Microsoft/Google account, hence my interest in OIDC (specifically in combination with an Azure B2C Tenant).
+
+To bootstrap the new project I could have used [Spring Initializr](https://start.spring.io/), but I decided to go one step further and use [JHipster](https://www.jhipster.tech/). Not sure how hip this really is nowadays, but it gives me solid and secure foundation consisting of an Angular front-end and a Spring Boot back-end. See [.yo-rc.json](.yo-rc.json) for initial choices.
 
 This project will consume some of my spare time, maybe for the coming hours/maybe for the coming years. It's about the journey, not the destination. By nature I am a back-end developer, so I would be very surprised if it ends in something good-looking and user-friendly :smiley:
 
@@ -52,4 +54,4 @@ web.config contents:
 Differences between running locally and running in the Azure cloud:
 
 1. The DB provider changes from H2 (in-memory) to Azure SQL Database (SQL Server in the cloud, the cheapest DB option available in Azure).
-2. The OIDC provider changes from Keycloak to Azure Active Directory B2C.
+2. The OIDC provider changes from Keycloak to Azure Active Directory B2C (though **at the moment it's always the latter**, for easier troubleshooting of the AAD integration).
