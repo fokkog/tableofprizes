@@ -5,7 +5,6 @@ import com.fokkog.security.AuthoritiesConstants;
 import com.fokkog.service.UserService;
 import com.fokkog.service.dto.UserDTO;
 
-import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 

@@ -3,9 +3,7 @@ package com.fokkog.web.rest;
 import com.fokkog.TableofprizesApp;
 import com.fokkog.config.TestSecurityConfiguration;
 import com.fokkog.security.AuthoritiesConstants;
-import com.fokkog.service.UserService;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -27,7 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.fokkog.web.rest.AccountResourceIT.TEST_USER_LOGIN;
-import org.springframework.security.test.context.support.WithMockUser;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
