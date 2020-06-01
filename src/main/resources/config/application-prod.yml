@@ -65,8 +65,8 @@ azure:
       oidc-enabled: true
       client-id: ${OAUTH_CLIENTID}
       client-secret: ${OAUTH_CLIENTSECRET}
-      reply-url: https://www.prijzentafel.nl:8080/login/oauth2/code
-      logout-success-url: https://www.prijzentafel.nl:8080/
+      reply-url: https://www.prijzentafel.nl/login/oauth2/code
+      logout-success-url: https://www.prijzentafel.nl/
       user-flows:
         sign-up-or-sign-in: B2C_1_signupsignin
 
