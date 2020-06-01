@@ -149,7 +149,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'tableofprizesApp'
+    name: 'TableOfPrizesApp'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #     allowed-origins: "*"

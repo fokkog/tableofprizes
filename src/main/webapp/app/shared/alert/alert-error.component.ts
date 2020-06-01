@@ -22,12 +22,12 @@ export class AlertErrorComponent implements OnDestroy {
   httpErrorListener: Subscription;
 
   constructor(private alertService: JhiAlertService, private eventManager: JhiEventManager, translateService: TranslateService) {
-    this.errorListener = eventManager.subscribe('tableofprizesApp.error', (response: JhiEventWithContent<AlertError>) => {
+    this.errorListener = eventManager.subscribe('TableOfPrizesApp.error', (response: JhiEventWithContent<AlertError>) => {
       const errorResponse = response.content;
       this.addErrorAlert(errorResponse.message, errorResponse.key, errorResponse.params);
     });
 
-    this.httpErrorListener = eventManager.subscribe('tableofprizesApp.httpError', (response: JhiEventWithContent<HttpErrorResponse>) => {
+    this.httpErrorListener = eventManager.subscribe('TableOfPrizesApp.httpError', (response: JhiEventWithContent<HttpErrorResponse>) => {
       const httpErrorResponse = response.content;
       switch (httpErrorResponse.status) {
         // connection refused, server not reachable
@@ -57,7 +57,7 @@ export class AlertErrorComponent implements OnDestroy {
               }
               // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
               const convertedField = fieldError.field.replace(/\[\d*\]/g, '[]');
-              const fieldName = translateService.instant('tableofprizesApp.' + fieldError.objectName + '.' + convertedField);
+              const fieldName = translateService.instant('TableOfPrizesApp.' + fieldError.objectName + '.' + convertedField);
               this.addErrorAlert('Error on field "' + fieldName + '"', 'error.' + fieldError.message, { fieldName });
             }
           } else if (httpErrorResponse.error !== '' && httpErrorResponse.error.message) {
