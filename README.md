@@ -1,4 +1,4 @@
-# tableofprizes
+# Table Of Prizes
 
 Once ready, this application intends to support a **virtual table of prizes**.
 
@@ -10,7 +10,7 @@ Of course the real goal is to learn stuff, mainly:
 - OpenID Connect (OIDC) and its support in Azure
 - GitHub, specifically GitHub Actions for CI
 
-The application is public, but it will have to identify table managers and prize winners. I am not interested in active user management including self-registration etc. Instread I would prefer to rely on existing Microsoft/Google account, hence my interest in OIDC (specifically in combination with an Azure B2C Tenant).
+The application is public, but it will have to identify table managers and prize winners. For this I would prefer to rely on existing Microsoft/Google accounts, hence my interest in OIDC (specifically as supported by an Azure B2C Tenant).
 
 To bootstrap the new project I could have used [Spring Initializr](https://start.spring.io/), but I decided to go one step further and use [JHipster](https://www.jhipster.tech/). Not sure how hip this really is nowadays, but it gives me solid and secure foundation consisting of an Angular front-end and a Spring Boot back-end. See [.yo-rc.json](.yo-rc.json) for initial choices.
 
@@ -55,3 +55,9 @@ Differences between running locally and running in the Azure cloud:
 
 1. The DB provider changes from H2 (in-memory) to Azure SQL Database (SQL Server in the cloud, the cheapest DB option available in Azure).
 2. The OIDC provider changes from Keycloak to Azure Active Directory B2C (though **at the moment it's always the latter**, for easier troubleshooting of the AAD integration).
+
+## lessons learned so far
+
+1. Azure (at least its Windows-based App Service Plan) is hardly fit to run Spring Boot applications. I am running on the cheapest App Service Plan that supports custom domains and SSL: **B1** estimated at 46.17 EUR per month.
+   An application that takes 20s to start locally takes forever (10 minutes or more) to start in the Azure cloud.
+2. After getting off on the wrong foot: AAD B2C is not a transparent variation on AAD. It has its own starter kit and its own configuration.
