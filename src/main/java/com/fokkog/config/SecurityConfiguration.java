@@ -1,6 +1,10 @@
 package com.fokkog.config;
 
+import java.util.*;
+
 import com.fokkog.security.*;
+
+import com.microsoft.azure.spring.autoconfigure.b2c.AADB2COidcLoginConfigurer;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
@@ -10,14 +14,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import com.fokkog.security.SecurityUtils;
-import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
-import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
-import java.util.*;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
@@ -31,12 +30,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final CorsFilter corsFilter;
     private final SecurityProblemSupport problemSupport;
-    private final OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService;
+    private final AADB2COidcLoginConfigurer configurer;
 
-    public SecurityConfiguration(CorsFilter corsFilter, SecurityProblemSupport problemSupport, OAuth2UserService<OidcUserRequest, OidcUser> oidcUserService) {
+    public SecurityConfiguration(CorsFilter corsFilter, SecurityProblemSupport problemSupport, AADB2COidcLoginConfigurer configurer) {
         this.corsFilter = corsFilter;
         this.problemSupport = problemSupport;
-        this.oidcUserService = oidcUserService;
+        this.configurer = configurer;
     }
 
     @Override
@@ -81,32 +80,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/management/prometheus").permitAll()
             .antMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
         .and()
-	        .oauth2Login()
-	        .userInfoEndpoint()
-	        .oidcUserService(oidcUserService);
+            .apply(configurer);
         // @formatter:on
-    }
-
-    /**
-     * Map authorities from "groups" or "roles" claim in ID Token.
-     *
-     * @return a {@link GrantedAuthoritiesMapper} that maps groups from
-     * the IdP to Spring Security Authorities.
-     */
-    @Bean
-    public GrantedAuthoritiesMapper userAuthoritiesMapper() {
-        return (authorities) -> {
-            Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
-
-            authorities.forEach(authority -> {
-                // Check for OidcUserAuthority because Spring Security 5.2 returns
-                // each scope as a GrantedAuthority, which we don't care about.
-                if (authority instanceof OidcUserAuthority) {
-                    OidcUserAuthority oidcUserAuthority = (OidcUserAuthority) authority;
-                    mappedAuthorities.addAll(SecurityUtils.extractAuthorityFromClaims(oidcUserAuthority.getUserInfo().getClaims()));
-                }
-            });
-            return mappedAuthorities;
-        };
     }
 }

@@ -19,7 +19,7 @@ public class LogoutResource {
     private final ClientRegistration registration;
 
     public LogoutResource(ClientRegistrationRepository registrations) {
-        this.registration = registrations.findByRegistrationId("azure");
+        this.registration = registrations.findByRegistrationId("B2C_1_signupsignin");
     }
 
     /**

@@ -71,13 +71,18 @@ spring:
         size: 1
   thymeleaf:
     mode: HTML
-  # Allow SecurityConfiguration to initialize w/o specifying an empty issuer-uri is OK
-  security:
-    oauth2:
-      client:
-        provider:
-          oidc:
-            issuer-uri: http://DO_NOT_CALL:9080/auth/realms/jhipster
+
+azure:
+  activedirectory:
+    b2c:
+      tenant: tableofprizes
+      oidc-enabled: true
+      client-id: ${OAUTH_CLIENTID}
+      client-secret: ${OAUTH_CLIENTSECRET}
+      reply-url: http://localhost:8080/login/oauth2/code
+      logout-success-url: http://localhost:8080/
+      user-flows:
+        sign-up-or-sign-in: B2C_1_signupsignin
 
 server:
   port: 10344

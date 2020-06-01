@@ -117,18 +117,6 @@ spring:
   output:
     ansi:
       console-available: true
-  security:
-    oauth2:
-      client:
-        registration:
-          azure:
-            client-id: ${OAUTH_CLIENTID}
-            client-secret: ${OAUTH_CLIENTSECRET}
-
-azure:
-  activedirectory:
-    tenant-id: ${AZURE_TENANTID}
-    active-directory-groups: ROLE_ADMIN, ROLE_USER
 
 server:
   servlet:
