@@ -1,6 +1,6 @@
 package com.fokkog.web.rest;
 
-import com.fokkog.TableofprizesApp;
+import com.fokkog.TableOfPrizesApp;
 import com.fokkog.config.TestSecurityConfiguration;
 import com.fokkog.domain.Authority;
 import com.fokkog.domain.User;
@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @AutoConfigureMockMvc
 @WithMockUser(authorities = AuthoritiesConstants.ADMIN)
-@SpringBootTest(classes = {TableofprizesApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {TableOfPrizesApp.class, TestSecurityConfiguration.class})
 public class UserResourceIT {
 
     private static final String DEFAULT_LOGIN = "johndoe";

@@ -1,6 +1,6 @@
 package com.fokkog.web.rest;
 
-import com.fokkog.TableofprizesApp;
+import com.fokkog.TableOfPrizesApp;
 import com.fokkog.config.TestSecurityConfiguration;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Integration tests for the {@link LogoutResource} REST controller.
  */
-@SpringBootTest(classes = {TableofprizesApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {TableOfPrizesApp.class, TestSecurityConfiguration.class})
 public class LogoutResourceIT {
 
     @Autowired

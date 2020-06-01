@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import './vendor';
-import { TableofprizesSharedModule } from 'app/shared/shared.module';
-import { TableofprizesCoreModule } from 'app/core/core.module';
-import { TableofprizesAppRoutingModule } from './app-routing.module';
-import { TableofprizesHomeModule } from './home/home.module';
-import { TableofprizesEntityModule } from './entities/entity.module';
+import { TableOfPrizesSharedModule } from 'app/shared/shared.module';
+import { TableOfPrizesCoreModule } from 'app/core/core.module';
+import { TableOfPrizesAppRoutingModule } from './app-routing.module';
+import { TableOfPrizesHomeModule } from './home/home.module';
+import { TableOfPrizesEntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { MainComponent } from './layouts/main/main.component';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
@@ -18,14 +18,14 @@ import { ErrorComponent } from './layouts/error/error.component';
 @NgModule({
   imports: [
     BrowserModule,
-    TableofprizesSharedModule,
-    TableofprizesCoreModule,
-    TableofprizesHomeModule,
+    TableOfPrizesSharedModule,
+    TableOfPrizesCoreModule,
+    TableOfPrizesHomeModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
-    TableofprizesEntityModule,
-    TableofprizesAppRoutingModule,
+    TableOfPrizesEntityModule,
+    TableOfPrizesAppRoutingModule,
   ],
   declarations: [MainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   bootstrap: [MainComponent],
 })
-export class TableofprizesAppModule {}
+export class TableOfPrizesAppModule {}

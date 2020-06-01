@@ -1,6 +1,6 @@
 package com.fokkog.service;
 
-import com.fokkog.TableofprizesApp;
+import com.fokkog.TableOfPrizesApp;
 import com.fokkog.config.Constants;
 import com.fokkog.config.TestSecurityConfiguration;
 import com.fokkog.domain.User;
@@ -32,7 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Integration tests for {@link UserService}.
  */
-@SpringBootTest(classes = {TableofprizesApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {TableOfPrizesApp.class, TestSecurityConfiguration.class})
 @Transactional
 public class UserServiceIT {
 

@@ -1,6 +1,6 @@
 package com.fokkog.web.rest.errors;
 
-import com.fokkog.TableofprizesApp;
+import com.fokkog.TableOfPrizesApp;
 import com.fokkog.config.TestSecurityConfiguration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 @WithMockUser
 @AutoConfigureMockMvc
-@SpringBootTest(classes = {TableofprizesApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {TableOfPrizesApp.class, TestSecurityConfiguration.class})
 public class ExceptionTranslatorIT {
 
     @Autowired

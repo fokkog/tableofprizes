@@ -1,6 +1,6 @@
 package com.fokkog.repository;
 
-import com.fokkog.TableofprizesApp;
+import com.fokkog.TableOfPrizesApp;
 
 import com.fokkog.config.Constants;
 import com.fokkog.config.TestSecurityConfiguration;
@@ -29,7 +29,7 @@ import static com.fokkog.repository.CustomAuditEventRepository.EVENT_DATA_COLUMN
 /**
  * Integration tests for {@link CustomAuditEventRepository}.
  */
-@SpringBootTest(classes = {TableofprizesApp.class, TestSecurityConfiguration.class})
+@SpringBootTest(classes = {TableOfPrizesApp.class, TestSecurityConfiguration.class})
 @Transactional
 public class CustomAuditEventRepositoryIT {
 

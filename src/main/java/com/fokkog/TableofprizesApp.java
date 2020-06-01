@@ -22,13 +22,13 @@ import java.util.Collection;
 
 @SpringBootApplication
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
-public class TableofprizesApp {
+public class TableOfPrizesApp {
 
-    private static final Logger log = LoggerFactory.getLogger(TableofprizesApp.class);
+    private static final Logger log = LoggerFactory.getLogger(TableOfPrizesApp.class);
 
     private final Environment env;
 
-    public TableofprizesApp(Environment env) {
+    public TableOfPrizesApp(Environment env) {
         this.env = env;
     }
 
@@ -58,7 +58,7 @@ public class TableofprizesApp {
      * @param args the command line arguments.
      */
     public static void main(String[] args) {
-        SpringApplication app = new SpringApplication(TableofprizesApp.class);
+        SpringApplication app = new SpringApplication(TableOfPrizesApp.class);
         DefaultProfileUtil.addDefaultProfile(app);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);
