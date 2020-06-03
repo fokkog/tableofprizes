@@ -1,7 +1,7 @@
 {
   "name": "tableofprizes",
-  "version": "0.0.1-SNAPSHOT",
-  "description": "Description for tableofprizes",
+  "version": "0.1.0",
+  "description": "Table Of Prizes",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [
