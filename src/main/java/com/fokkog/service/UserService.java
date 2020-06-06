@@ -137,7 +137,7 @@ public class UserService {
      * @param authToken the authentication token.
      * @return the user from the authentication.
      */
-    @Transactional(readOnly = true)
+    @Transactional
     public UserDTO getUserFromAuthentication(AbstractAuthenticationToken authToken) {
         Map<String, Object> attributes;
         if (authToken instanceof OAuth2AuthenticationToken) {
@@ -186,6 +186,15 @@ public class UserService {
             user.setEmail(((String) details.get("email")).toLowerCase());
         } else {
             user.setEmail((String) details.get("sub"));
+        }
+        if (details.get("emails") != null) {
+        	Object emails = details.get("emails");
+        	if(emails instanceof List) {
+	        	@SuppressWarnings("rawtypes")
+				List list = (List) emails;
+	        	String email = (String) list.get(0);
+	            user.setEmail(email.toLowerCase());
+        	}
         }
         if (details.get("langKey") != null) {
             user.setLangKey((String) details.get("langKey"));

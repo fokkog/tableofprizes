@@ -4,6 +4,11 @@ import com.fokkog.security.*;
 
 import com.microsoft.azure.spring.autoconfigure.b2c.AADB2COidcLoginConfigurer;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -11,6 +16,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
+import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
@@ -76,5 +85,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         .and()
             .apply(configurer);
         // @formatter:on
+    }
+
+	@SuppressWarnings("rawtypes")
+    @Bean
+    public GrantedAuthoritiesMapper userAuthoritiesMapper() {
+        return (authorities) -> {
+            Set<GrantedAuthority> mappedAuthorities = new HashSet<>();
+            authorities.forEach(authority -> {
+                if (authority instanceof OidcUserAuthority) {
+                    mappedAuthorities.add(new SimpleGrantedAuthority(authority.getAuthority()));
+                    
+    	        	// Grant ROLE_ADMIN to special users as long as not coming from AAD B2C
+                    OidcUserAuthority oidcUserAuthority = (OidcUserAuthority) authority;
+                    if (oidcUserAuthority.getAttributes().containsKey("emails")) {
+                    	Object emails = oidcUserAuthority.getAttributes().get("emails");
+                    	if (emails instanceof List && !((List) emails).isEmpty()) {
+            	        	String email = (String)((List) emails).get(0);
+            	            if ("fokko_groenenboom@hotmail.com".equals(email) || "fokkog@hotmail.com".equals(email)) {
+            	            	mappedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            	            }
+                    	}
+                    }
+	            }
+            });
+            return mappedAuthorities;
+        };
     }
 }

@@ -2,8 +2,6 @@ package com.fokkog.web.rest;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.client.registration.ClientRegistration;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.core.oidc.OidcIdToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,13 +14,8 @@ import java.util.Map;
  */
 @RestController
 public class LogoutResource {
-    private final ClientRegistration registration;
 
-    public LogoutResource(ClientRegistrationRepository registrations) {
-        this.registration = registrations.findByRegistrationId("B2C_1_signupsignin");
-    }
-
-    /**
+	/**
      * {@code POST  /api/logout} : logout the current user.
      *
      * @param request the {@link HttpServletRequest}.
@@ -32,13 +25,12 @@ public class LogoutResource {
     @PostMapping("/api/logout")
     public ResponseEntity<?> logout(HttpServletRequest request,
                                     @AuthenticationPrincipal(expression = "idToken") OidcIdToken idToken) {
-        String logoutUrl = this.registration.getProviderDetails()
-            .getConfigurationMetadata().get("end_session_endpoint").toString();
+        request.getSession().invalidate();
 
+        String logoutUrl = "https://tableofprizes.b2clogin.com/tableofprizes.onmicrosoft.com/oauth2/v2.0/logout?p=b2c_1_signupsignin";
         Map<String, String> logoutDetails = new HashMap<>();
         logoutDetails.put("logoutUrl", logoutUrl);
         logoutDetails.put("idToken", idToken.getTokenValue());
-        request.getSession().invalidate();
         return ResponseEntity.ok().body(logoutDetails);
     }
 }
