@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
-import { TableofprizesTestModule } from '../../../test.module';
+import { TableOfPrizesTestModule } from '../../../test.module';
 import { ImageDetailComponent } from 'app/entities/image/image-detail.component';
 import { Image } from 'app/shared/model/image.model';
 
@@ -14,7 +14,7 @@ describe('Component Tests', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [TableofprizesTestModule],
+        imports: [TableOfPrizesTestModule],
         declarations: [ImageDetailComponent],
         providers: [{ provide: ActivatedRoute, useValue: route }],
       })

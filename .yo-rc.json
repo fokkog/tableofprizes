@@ -6,7 +6,7 @@
     },
     "jhipsterVersion": "6.9.0",
     "applicationType": "monolith",
-    "baseName": "tableOfPrizes",
+    "baseName": "TableOfPrizes",
     "packageName": "com.fokkog",
     "packageFolder": "com/fokkog",
     "serverPort": "8080",

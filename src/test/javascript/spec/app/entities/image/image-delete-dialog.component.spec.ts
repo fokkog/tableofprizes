@@ -3,7 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { of } from 'rxjs';
 import { JhiEventManager } from 'ng-jhipster';
 
-import { TableofprizesTestModule } from '../../../test.module';
+import { TableOfPrizesTestModule } from '../../../test.module';
 import { MockEventManager } from '../../../helpers/mock-event-manager.service';
 import { MockActiveModal } from '../../../helpers/mock-active-modal.service';
 import { ImageDeleteDialogComponent } from 'app/entities/image/image-delete-dialog.component';
@@ -19,7 +19,7 @@ describe('Component Tests', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [TableofprizesTestModule],
+        imports: [TableOfPrizesTestModule],
         declarations: [ImageDeleteDialogComponent],
       })
         .overrideTemplate(ImageDeleteDialogComponent, '')

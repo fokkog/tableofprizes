@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="tableofprizesApp.image.home.title">Images</span>
+        <span jhiTranslate="TableOfPrizesApp.image.home.title">Images</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-image" [routerLink]="['/image/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="tableofprizesApp.image.home.createLabel">
+            <span  jhiTranslate="TableOfPrizesApp.image.home.createLabel">
             Create a new Image
             </span>
         </button>
@@ -15,7 +15,7 @@
     <jhi-alert></jhi-alert>
 
     <div class="alert alert-warning" id="no-result" *ngIf="images?.length === 0">
-        <span jhiTranslate="tableofprizesApp.image.home.notFound">No images found</span>
+        <span jhiTranslate="TableOfPrizesApp.image.home.notFound">No images found</span>
     </div>
 
     <div class="table-responsive" id="entities" *ngIf="images && images.length > 0">
@@ -23,8 +23,8 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="tableofprizesApp.image.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="url"><span jhiTranslate="tableofprizesApp.image.url">Url</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="TableOfPrizesApp.image.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="url"><span jhiTranslate="TableOfPrizesApp.image.url">Url</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>

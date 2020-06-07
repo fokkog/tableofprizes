@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 import { HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, convertToParamMap, Data } from '@angular/router';
 
-import { TableofprizesTestModule } from '../../../test.module';
+import { TableOfPrizesTestModule } from '../../../test.module';
 import { ImageComponent } from 'app/entities/image/image.component';
 import { ImageService } from 'app/entities/image/image.service';
 import { Image } from 'app/shared/model/image.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [TableofprizesTestModule],
+        imports: [TableOfPrizesTestModule],
         declarations: [ImageComponent],
         providers: [
           {

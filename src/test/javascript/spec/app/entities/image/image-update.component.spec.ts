@@ -3,7 +3,7 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder } from '@angular/forms';
 import { of } from 'rxjs';
 
-import { TableofprizesTestModule } from '../../../test.module';
+import { TableOfPrizesTestModule } from '../../../test.module';
 import { ImageUpdateComponent } from 'app/entities/image/image-update.component';
 import { ImageService } from 'app/entities/image/image.service';
 import { Image } from 'app/shared/model/image.model';
@@ -16,7 +16,7 @@ describe('Component Tests', () => {
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [TableofprizesTestModule],
+        imports: [TableOfPrizesTestModule],
         declarations: [ImageUpdateComponent],
         providers: [FormBuilder],
       })

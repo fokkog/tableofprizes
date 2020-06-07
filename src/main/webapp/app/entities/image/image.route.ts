@@ -45,7 +45,7 @@ export const imageRoute: Routes = [
     data: {
       authorities: [Authority.USER],
       defaultSort: 'id,asc',
-      pageTitle: 'tableofprizesApp.image.home.title',
+      pageTitle: 'TableOfPrizesApp.image.home.title',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -57,7 +57,7 @@ export const imageRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'tableofprizesApp.image.home.title',
+      pageTitle: 'TableOfPrizesApp.image.home.title',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -69,7 +69,7 @@ export const imageRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'tableofprizesApp.image.home.title',
+      pageTitle: 'TableOfPrizesApp.image.home.title',
     },
     canActivate: [UserRouteAccessService],
   },
@@ -81,7 +81,7 @@ export const imageRoute: Routes = [
     },
     data: {
       authorities: [Authority.USER],
-      pageTitle: 'tableofprizesApp.image.home.title',
+      pageTitle: 'TableOfPrizesApp.image.home.title',
     },
     canActivate: [UserRouteAccessService],
   },
