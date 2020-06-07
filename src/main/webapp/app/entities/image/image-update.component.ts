@@ -35,6 +35,7 @@ export class ImageUpdateComponent implements OnInit {
       id: image.id,
       name: image.name,
       url: image.url,
+      user: image.user,
     });
   }
 
@@ -58,6 +59,7 @@ export class ImageUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
       url: this.editForm.get(['url'])!.value,
+      user: this.editForm.get(['user'])!.value,
     };
   }
 

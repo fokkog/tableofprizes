@@ -96,27 +96,14 @@ public class ImageResource {
      * {@code GET  /images} : get all the images.
      *
      * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of images in body.
      */
     @GetMapping("/images")
     public ResponseEntity<List<Image>> getAllImages(Pageable pageable) {
-        log.debug("REST request to get all Images");
+        log.debug("REST request to get a page of Images");
         Page<Image> page = imageService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
-    }
-
-    /**
-     * {@code GET  /images/count} : count all the images.
-     *
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the count in body.
-     */
-    @GetMapping("/images/count")
-    public ResponseEntity<Long> countImages() {
-        log.debug("REST request to count Images");
-        return ResponseEntity.ok().body(3L);
     }
 
     /**
