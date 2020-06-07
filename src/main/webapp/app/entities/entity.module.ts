@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
     RouterModule.forChild([
       {
         path: 'image',
-        loadChildren: () => import('./image/image.module').then(m => m.TableofprizesImageModule),
+        loadChildren: () => import('./image/image.module').then(m => m.TableOfPrizesImageModule),
       },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),

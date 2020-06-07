@@ -13,4 +13,4 @@ import { imageRoute } from './image.route';
   declarations: [ImageComponent, ImageDetailComponent, ImageUpdateComponent, ImageDeleteDialogComponent],
   entryComponents: [ImageDeleteDialogComponent],
 })
-export class TableofprizesImageModule {}
+export class TableOfPrizesImageModule {}
