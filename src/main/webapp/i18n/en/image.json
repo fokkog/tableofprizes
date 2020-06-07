@@ -1,0 +1,24 @@
+{
+  "tableofprizesApp": {
+    "image": {
+      "home": {
+        "title": "Images",
+        "createLabel": "Create a new image",
+        "createOrEditLabel": "Create or edit an image",
+        "notFound": "No Images found"
+      },
+      "created": "A new image is created with identifier {{ param }}",
+      "updated": "An image is updated with identifier {{ param }}",
+      "deleted": "An image is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete image {{ id }}?"
+      },
+      "detail": {
+        "title": "Image"
+      },
+      "name": "Name",
+      "url": "Url",
+      "user": "User"
+    }
+  }
+}

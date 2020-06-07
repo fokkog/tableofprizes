@@ -1,0 +1,24 @@
+{
+  "tableofprizesApp": {
+    "image": {
+      "home": {
+        "title": "Afbeelding",
+        "createLabel": "Maak een nieuwe afbeelding",
+        "createOrEditLabel": "Maak of wijzig een afbeelding",
+        "notFound": "Geen afbeeldingen gevonden"
+      },
+      "created": "Afbeelding {{ param }} aangemaakt",
+      "updated": "Afbeelding {{ param }} gewijzigd",
+      "deleted": "Afbeelding {{ param }} verwijderd",
+      "delete": {
+        "question": "Bent u zeker dat u afbeelding {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Afbeelding"
+      },
+      "name": "Naam",
+      "url": "Url",
+      "user": "Gebruiker"
+    }
+  }
+}

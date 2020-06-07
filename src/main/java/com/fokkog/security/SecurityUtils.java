@@ -44,6 +44,9 @@ public final class SecurityUtils {
             if (attributes.containsKey("preferred_username")) {
                 return (String) attributes.get("preferred_username");
             }
+            if (attributes.containsKey("sub")) {
+                return (String) attributes.get("sub");
+            }
         } else if (authentication.getPrincipal() instanceof String) {
             return (String) authentication.getPrincipal();
         }

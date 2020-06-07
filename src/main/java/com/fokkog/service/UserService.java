@@ -81,6 +81,13 @@ public class UserService {
         return userRepository.findOneWithAuthoritiesByLogin(login);
     }
 
+    public User getCurrentUser() {
+    	Optional<String> login = SecurityUtils.getCurrentUserLogin();
+    	if (!login.isPresent()) return null;
+    	Optional<User> user = getUserWithAuthoritiesByLogin(login.get());
+    	if (!user.isPresent()) return null;
+    	return user.get();
+    }
 
     /**
      * Gets a list of all the authorities.
