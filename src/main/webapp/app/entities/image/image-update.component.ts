@@ -20,6 +20,7 @@ export class ImageUpdateComponent implements OnInit {
     id: [],
     name: [],
     url: [],
+    user: [],
   });
 
   constructor(protected imageService: ImageService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
