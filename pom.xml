@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.fokkog</groupId>
@@ -29,10 +28,6 @@
         <jhipster-dependencies.version>3.7.1</jhipster-dependencies.version>
         <spring-boot.version>2.2.7.RELEASE</spring-boot.version>
         <hibernate.version>5.4.15.Final</hibernate.version>
-        <javassist.version>3.24.0-GA</javassist.version>
-        <liquibase.version>3.9.0</liquibase.version>
-        <liquibase-hibernate5.version>3.8</liquibase-hibernate5.version>
-        <validation-api.version>2.0.1.Final</validation-api.version>
         <jaxb-runtime.version>2.3.2</jaxb-runtime.version>
         <archunit-junit5.version>0.13.1</archunit-junit5.version>
         <mapstruct.version>1.3.1.Final</mapstruct.version>
@@ -45,6 +40,7 @@
         <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
         <maven-exec-plugin.version>1.6.0</maven-exec-plugin.version>
         <maven-gitcommitid-plugin.version>4.0.0</maven-gitcommitid-plugin.version>
+
         <junit.utReportFolder>${project.testresult.directory}/test</junit.utReportFolder>
         <junit.itReportFolder>${project.testresult.directory}/integrationTest</junit.itReportFolder>
     </properties>
@@ -155,7 +151,6 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>${liquibase.version}</version>
         </dependency>
         <dependency>
             <groupId>net.logstash.logback</groupId>
