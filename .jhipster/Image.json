@@ -24,7 +24,7 @@
       "fieldType": "String",
       "fieldValidateRules": ["required", "maxlength", "pattern"],
       "fieldValidateRulesMaxlength": "1000",
-      "fieldValidateRulesPattern": "^(https?|ftp)://[^\\s]*$"
+      "fieldValidateRulesPattern": "^https://[^\\s]*$"
     }
   ],
   "changelogDate": "20200607104600",

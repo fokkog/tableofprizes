@@ -30,12 +30,11 @@ public class Image implements Serializable {
 
     @NotNull
     @Size(max = 1000)
-    @Pattern(regexp = "^(https?|ftp)://[^\\s]*$")
+    @Pattern(regexp = "^https://[^\\s]*$")
     @Column(name = "url", length = 1000, nullable = false)
     private String url;
 
-    @NotNull
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "user_id")
     private String userId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

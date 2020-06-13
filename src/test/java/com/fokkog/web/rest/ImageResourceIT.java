@@ -36,8 +36,8 @@ public class ImageResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_URL = "http://e#+@iS";
-    private static final String UPDATED_URL = "ftp://~Hnx+UZ@iS";
+    private static final String DEFAULT_URL = "https://e#+@.iS";
+    private static final String UPDATED_URL = "https://~Hnx+UZ.@iS";
 
     @Autowired
     private ImageRepository imageRepository;
