@@ -3,6 +3,7 @@ package com.fokkog.web.rest;
 import com.fokkog.TableOfPrizesApp;
 import com.fokkog.config.TestSecurityConfiguration;
 import com.fokkog.domain.Image;
+import com.fokkog.domain.User;
 import com.fokkog.repository.ImageRepository;
 import com.fokkog.service.ImageService;
 
@@ -35,8 +36,8 @@ public class ImageResourceIT {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_URL = "AAAAAAAAAA";
-    private static final String UPDATED_URL = "BBBBBBBBBB";
+    private static final String DEFAULT_URL = "http://e#+@iS";
+    private static final String UPDATED_URL = "ftp://~Hnx+UZ@iS";
 
     @Autowired
     private ImageRepository imageRepository;
@@ -62,6 +63,11 @@ public class ImageResourceIT {
         Image image = new Image()
             .name(DEFAULT_NAME)
             .url(DEFAULT_URL);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        image.setUserId(user.getId());
         return image;
     }
     /**
@@ -74,6 +80,11 @@ public class ImageResourceIT {
         Image image = new Image()
             .name(UPDATED_NAME)
             .url(UPDATED_URL);
+        // Add required entity
+        User user = UserResourceIT.createEntity(em);
+        em.persist(user);
+        em.flush();
+        image.setUserId(user.getId());
         return image;
     }
 
@@ -119,6 +130,44 @@ public class ImageResourceIT {
         assertThat(imageList).hasSize(databaseSizeBeforeCreate);
     }
 
+
+    @Test
+    @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = imageRepository.findAll().size();
+        // set the field null
+        image.setName(null);
+
+        // Create the Image, which fails.
+
+
+        restImageMockMvc.perform(post("/api/images").with(csrf())
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(image)))
+            .andExpect(status().isBadRequest());
+
+        List<Image> imageList = imageRepository.findAll();
+        assertThat(imageList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkUrlIsRequired() throws Exception {
+        int databaseSizeBeforeTest = imageRepository.findAll().size();
+        // set the field null
+        image.setUrl(null);
+
+        // Create the Image, which fails.
+
+
+        restImageMockMvc.perform(post("/api/images").with(csrf())
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(TestUtil.convertObjectToJsonBytes(image)))
+            .andExpect(status().isBadRequest());
+
+        List<Image> imageList = imageRepository.findAll();
+        assertThat(imageList).hasSize(databaseSizeBeforeTest);
+    }
 
     @Test
     @Transactional

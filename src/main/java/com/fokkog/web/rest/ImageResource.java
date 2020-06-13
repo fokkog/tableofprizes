@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -55,7 +56,7 @@ public class ImageResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/images")
-    public ResponseEntity<Image> createImage(@RequestBody Image image) throws URISyntaxException {
+    public ResponseEntity<Image> createImage(@Valid @RequestBody Image image) throws URISyntaxException {
         log.debug("REST request to save Image : {}", image);
         if (image.getId() != null) {
             throw new BadRequestAlertException("A new image cannot already have an ID", ENTITY_NAME, "idexists");
@@ -77,7 +78,7 @@ public class ImageResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/images")
-    public ResponseEntity<Image> updateImage(@RequestBody Image image) throws URISyntaxException {
+    public ResponseEntity<Image> updateImage(@Valid @RequestBody Image image) throws URISyntaxException {
         log.debug("REST request to update Image : {}", image);
         if (image.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

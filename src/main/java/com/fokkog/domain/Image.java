@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 
@@ -22,13 +23,19 @@ public class Image implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "name")
+    @NotNull
+    @Size(max = 100)
+    @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @Column(name = "url")
+    @NotNull
+    @Size(max = 1000)
+    @Pattern(regexp = "^(https?|ftp)://[^\\s]*$")
+    @Column(name = "url", length = 1000, nullable = false)
     private String url;
 
-    @Column(name = "user_id")
+    @NotNull
+    @Column(name = "user_id", nullable = false)
     private String userId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

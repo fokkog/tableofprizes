@@ -17,9 +17,9 @@ export class ImageUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    name: [],
-    url: [],
-    userId: [],
+    name: [null, [Validators.required, Validators.maxLength(100)]],
+    url: [null, [Validators.required, Validators.maxLength(1000), Validators.pattern('^(https?|ftp)://[^\\s]*$')]],
+    userId: [null, Validators.required],
   });
 
   constructor(protected imageService: ImageService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}

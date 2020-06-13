@@ -15,12 +15,36 @@
                     <label class="form-control-label" jhiTranslate="TableOfPrizesApp.image.name" for="field_name">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                            formControlName="name"/>
+                    <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 100 }">
+                        This field cannot be longer than 100 characters.
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="TableOfPrizesApp.image.url" for="field_url">Url</label>
                     <input type="text" class="form-control" name="url" id="field_url"
                            formControlName="url"/>
+                    <div *ngIf="editForm.get('url')!.invalid && (editForm.get('url')!.dirty || editForm.get('url')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('url')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('url')?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" [translateValues]="{ max: 1000 }">
+                        This field cannot be longer than 1000 characters.
+                        </small>
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('url')?.errors?.pattern" jhiTranslate="entity.validation.pattern" [translateValues]="{ pattern: 'Url' }">
+                            This field should follow pattern for "Url".
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">

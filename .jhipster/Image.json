@@ -6,6 +6,7 @@
       "relationshipName": "user",
       "otherEntityName": "user",
       "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required",
       "otherEntityField": "login",
       "ownerSide": true,
       "otherEntityRelationshipName": "image"
@@ -14,11 +15,16 @@
   "fields": [
     {
       "fieldName": "name",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "100"
     },
     {
       "fieldName": "url",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength", "pattern"],
+      "fieldValidateRulesMaxlength": "1000",
+      "fieldValidateRulesPattern": "^(https?|ftp)://[^\\s]*$"
     }
   ],
   "changelogDate": "20200607104600",
