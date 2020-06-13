@@ -17,7 +17,7 @@ jobs:
         node-version: 12
     - id: get-npm-cache
       run: |
-        echo "::set-output name=dir::$(npm config get cache)"
+        echo '::set-output name=dir::$(npm config get cache)'
     - uses: actions/cache@v2
       with:
         path: ${{ steps.get-npm-cache.outputs.dir }}
@@ -34,10 +34,10 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - run: mvn package -Pprod -DskipTests
+    - run: mvn package -Pprod -Pswagger -DskipTests
     - uses: azure/webapps-deploy@v1
       with:
-        app-name: 'tableofprizes'
-        slot-name: 'production'
+        app-name: tableofprizes
+        slot-name: production
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_daf97cdfeb564c35a63ae80b56310884 }}
         package: '${{ github.workspace }}/target/*.jar'
