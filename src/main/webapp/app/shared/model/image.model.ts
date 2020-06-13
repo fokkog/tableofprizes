@@ -1,12 +1,10 @@
-import { IUser } from 'app/core/user/user.model';
-
 export interface IImage {
   id?: number;
   name?: string;
   url?: string;
-  user?: IUser;
+  userId?: string;
 }
 
 export class Image implements IImage {
-  constructor(public id?: number, public name?: string, public url?: string, public user?: IUser) {}
+  constructor(public id?: number, public name?: string, public url?: string, public userId?: string) {}
 }

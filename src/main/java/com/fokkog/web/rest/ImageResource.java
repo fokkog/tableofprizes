@@ -60,7 +60,7 @@ public class ImageResource {
         if (image.getId() != null) {
             throw new BadRequestAlertException("A new image cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        image.setUser(userService.getCurrentUser());
+        image.setUserId(userService.getCurrentUser().getId());
         Image result = imageService.save(image);
         return ResponseEntity.created(new URI("/api/images/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
@@ -83,7 +83,7 @@ public class ImageResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         Optional<Image> origImage = imageService.findOne(image.getId());
-        if (!origImage.get().getUser().getId().equals(userService.getCurrentUser().getId())) {
+        if (!origImage.get().getUserId().equals(userService.getCurrentUser().getId())) {
         	return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         Image result = imageService.save(image);
@@ -116,7 +116,7 @@ public class ImageResource {
     public ResponseEntity<Image> getImage(@PathVariable Long id) {
         log.debug("REST request to get Image : {}", id);
         Optional<Image> image = imageService.findOne(id);
-        if (!image.get().getUser().getId().equals(userService.getCurrentUser().getId())) {
+        if (!image.get().getUserId().equals(userService.getCurrentUser().getId())) {
         	return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         return ResponseUtil.wrapOrNotFound(image);
@@ -132,7 +132,7 @@ public class ImageResource {
     public ResponseEntity<Void> deleteImage(@PathVariable Long id) {
         log.debug("REST request to delete Image : {}", id);
         Optional<Image> origImage = imageService.findOne(id);
-        if (!origImage.get().getUser().getId().equals(userService.getCurrentUser().getId())) {
+        if (!origImage.get().getUserId().equals(userService.getCurrentUser().getId())) {
         	return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
         imageService.delete(id);

@@ -1,6 +1,5 @@
 package com.fokkog.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -29,9 +28,8 @@ public class Image implements Serializable {
     @Column(name = "url")
     private String url;
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "images", allowSetters = true)
-    private User user;
+    @Column(name = "user_id")
+    private String userId;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -68,17 +66,12 @@ public class Image implements Serializable {
         this.url = url;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public Image user(User user) {
-        this.user = user;
-        return this;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String user_id) {
+        this.userId = user_id;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

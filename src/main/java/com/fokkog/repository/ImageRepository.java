@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ImageRepository extends JpaRepository<Image, Long>, JpaSpecificationExecutor<Image> {
 
-    @Query("select image from Image image where image.user.login = ?#{principal.attributes[\"sub\"]}")
+    @Query("select image from Image image where image.userId = ?#{principal.attributes[\"sub\"]}")
     Page<Image> findByUserIsCurrentUser(Pageable pageable);
 }

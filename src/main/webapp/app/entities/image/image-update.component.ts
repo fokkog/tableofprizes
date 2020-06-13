@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 
 import { IImage, Image } from 'app/shared/model/image.model';
 import { ImageService } from './image.service';
-import { IUser } from 'app/core/user/user.model';
 
 @Component({
   selector: 'jhi-image-update',
@@ -20,7 +19,7 @@ export class ImageUpdateComponent implements OnInit {
     id: [],
     name: [],
     url: [],
-    user: [],
+    userId: [],
   });
 
   constructor(protected imageService: ImageService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
@@ -36,7 +35,7 @@ export class ImageUpdateComponent implements OnInit {
       id: image.id,
       name: image.name,
       url: image.url,
-      user: image.user,
+      userId: image.userId,
     });
   }
 
@@ -60,7 +59,7 @@ export class ImageUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
       url: this.editForm.get(['url'])!.value,
-      user: this.editForm.get(['user'])!.value,
+      userId: this.editForm.get(['userId'])!.value,
     };
   }
 
@@ -78,9 +77,5 @@ export class ImageUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: IUser): any {
-    return item.id;
   }
 }
