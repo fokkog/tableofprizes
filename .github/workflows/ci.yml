@@ -34,7 +34,7 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - run: "mvn package -Pprod,swagger -DskipTests"
+    - run: 'mvn package -Pprod`,swagger -DskipTests'
     - uses: azure/webapps-deploy@v1
       with:
         app-name: tableofprizes
