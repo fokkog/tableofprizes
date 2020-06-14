@@ -49,9 +49,9 @@
     "messages": {
       "info": {
         "authenticated": {
-          "prefix": "Indien u wilt ",
+          "prefix": "In beide gevallen moet u zich ",
           "link": "aanmelden",
-          "suffix": ", dan kan u de standaard gebruikers proberen:<br/>- Administrator (login=\"admin\" en wachtwoord=\"admin\") <br/>- Gebruiker (login=\"user\" en wachtwoord=\"user\")."
+          "suffix": " om verder te gaan."
         },
         "register": {
           "noaccount": "U heeft nog geen gebruiker?",
@@ -97,7 +97,7 @@
       "edit": "Wijzigen",
       "open": "Open",
       "save": "Opslaan",
-      "view": "View"
+      "view": "Bekijken"
     },
     "detail": {
       "field": "Veld",
@@ -132,5 +132,5 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "Dit is uw voettekst"
+  "footer": "WERK IN UITVOERING"
 }
