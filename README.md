@@ -22,16 +22,14 @@ This project will consume some of my spare time, maybe for the coming hours/mayb
 
 Prerequisites for running locally:
 
-- Docker
 - JDK 11
 - Node.js 12
 
 For development I use Visual Studio Code with a few extensions, Language Support for Java being the main one.
+Running locally requires opening 2 terminal windows to start the following processes:
 
-Running the generated application locally requires opening 2 terminal windows to start the following processes:
-
-1. `docker-compose -f src/main/docker/keycloak.yml up`
-2. `mvn`
+1. `mvn` (to build and run back-end and front-end on port 8080)
+2. `npm start` (to build and run additional front-end on port 9000)
 
 ## deployment
 
@@ -56,7 +54,7 @@ web.config contents:
 Differences between running locally and running in the Azure cloud:
 
 1. The DB provider changes from H2 (in-memory) to Azure SQL Database (SQL Server in the cloud, the cheapest DB option available in Azure).
-2. The OIDC provider changes from Keycloak to Azure Active Directory B2C (though **at the moment it's always the latter**, for easier troubleshooting of the AAD integration).
+2. Log levels are higher.
 
 ## lessons learned so far
 
