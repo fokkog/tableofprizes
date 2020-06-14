@@ -2,7 +2,7 @@
   "TableOfPrizesApp": {
     "image": {
       "home": {
-        "title": "Afbeelding",
+        "title": "Afbeeldingen",
         "createLabel": "Maak een nieuwe afbeelding",
         "createOrEditLabel": "Maak of wijzig een afbeelding",
         "notFound": "Geen afbeeldingen gevonden"
