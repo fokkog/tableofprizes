@@ -15,6 +15,11 @@ h4 {
   font-weight: 300;
 }
 
+body {
+  background-image: url('../../content/images/background.svg');
+  background-repeat: repeat;
+}
+
 a:hover {
   /* make sure browsers use the pointer cursor for anchors, even with no href */
   cursor: pointer;
