@@ -83,8 +83,8 @@ public class UserResourceIT {
      */
     public static User createEntity(EntityManager em) {
         User user = new User();
-        user.setId(UUID.randomUUID().toString());
-        user.setLogin(DEFAULT_LOGIN + RandomStringUtils.randomAlphabetic(5));
+        user.setId("0");
+        user.setLogin("user");
         user.setActivated(true);
         user.setEmail(RandomStringUtils.randomAlphabetic(5) + DEFAULT_EMAIL);
         user.setFirstName(DEFAULT_FIRSTNAME);

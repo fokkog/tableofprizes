@@ -57,8 +57,7 @@ public class LogoutResourceIT {
 
     @Test
     public void getLogoutInformation() throws Exception {
-        String logoutUrl = this.registrations.findByRegistrationId("oidc").getProviderDetails()
-            .getConfigurationMetadata().get("end_session_endpoint").toString();
+        String logoutUrl = "https://tableofprizes.b2clogin.com/tableofprizes.onmicrosoft.com/oauth2/v2.0/logout?p=b2c_1_signupsignin";
         restLogoutMockMvc.perform(post("/api/logout"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
