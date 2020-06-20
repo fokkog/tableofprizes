@@ -81,12 +81,12 @@ public class UserService {
         return userRepository.findOneWithAuthoritiesByLogin(login);
     }
 
-    public User getCurrentUser() {
+    public String getCurrentUserId() {
     	Optional<String> login = SecurityUtils.getCurrentUserLogin();
     	if (!login.isPresent()) return null;
     	Optional<User> user = getUserWithAuthoritiesByLogin(login.get());
     	if (!user.isPresent()) return null;
-    	return user.get();
+    	return user.get().getId();
     }
 
     /**

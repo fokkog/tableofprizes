@@ -44,7 +44,7 @@ public class ImageService {
         log.debug("Request to save image: {}", image);
         if (image.getId() == null) {
             // Create: set owner
-            image.setUserId(userService.getCurrentUser().getId());
+            image.setUserId(userService.getCurrentUserId());
         } else {
             // Update: check owner
             findOne(image.getId());
@@ -61,8 +61,8 @@ public class ImageService {
     @Transactional(readOnly = true)
     public Page<Image> findByUserIsCurrentUser(Pageable pageable) {
         log.debug("Request to get own images");
-        String login = userService.getCurrentUser().getLogin();
-        return imageRepository.findByUserIsCurrentUser(login, pageable);
+        String userId = userService.getCurrentUserId();
+        return imageRepository.findAllByUserId(pageable, userId);
     }
 
 
@@ -79,7 +79,7 @@ public class ImageService {
         if (!image.isPresent()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        if (!image.get().getUserId().equals(userService.getCurrentUser().getId())) {
+        if (!image.get().getUserId().equals(userService.getCurrentUserId())) {
             throw new AccessDeniedException("Not the owner");
         }
         return image;
