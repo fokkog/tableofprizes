@@ -48,13 +48,6 @@ module.exports = (options) => ({
                     esModule: false
                 }
             },
-            {
-                test: /manifest.webapp$/,
-                loader: 'file-loader',
-                options: {
-                    name: 'manifest.webapp'
-                }
-            },
             // Ignore warnings about System.import in Angular
             { test: /[\/\\]@angular[\/\\].+\.js$/, parser: { system: true } },
         ]
@@ -80,7 +73,6 @@ module.exports = (options) => ({
             { from: './src/main/webapp/swagger-ui/', to: 'swagger-ui' },
             { from: './src/main/webapp/content/', to: 'content' },
             { from: './src/main/webapp/favicon.ico', to: 'favicon.ico' },
-            { from: './src/main/webapp/manifest.webapp', to: 'manifest.webapp' },
             // jhipster-needle-add-assets-to-webpack - JHipster will add/remove third-party resources in this array
             { from: './src/main/webapp/robots.txt', to: 'robots.txt' }
         ]),
