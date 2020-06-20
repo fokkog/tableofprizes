@@ -61,7 +61,8 @@ public class ImageService {
     @Transactional(readOnly = true)
     public Page<Image> findByUserIsCurrentUser(Pageable pageable) {
         log.debug("Request to get own images");
-        return imageRepository.findByUserIsCurrentUser(pageable);
+        String login = userService.getCurrentUser().getLogin();
+        return imageRepository.findByUserIsCurrentUser(login, pageable);
     }
 
 
