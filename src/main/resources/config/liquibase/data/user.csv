@@ -2,3 +2,4 @@ id;login;first_name;last_name;email;image_url;activated;lang_key;created_by;last
 1;system;System;System;system@localhost;;true;nl;system;system
 2;anonymoususer;Anonymous;User;anonymous@localhost;;true;nl;system;system
 ee6794d1-99d4-4a27-863b-0a90635b9459;ee6794d1-99d4-4a27-863b-0a90635b9459;Fokko;Groenenboom;fokkog@hotmail.com;;true;nl;system;system
+eb6e37b1-9d8b-4f87-a680-0b5e6921fa4f;eb6e37b1-9d8b-4f87-a680-0b5e6921fa4f;user;user;user@localhost;;true;nl;system;system
