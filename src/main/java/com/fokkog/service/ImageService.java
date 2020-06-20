@@ -42,7 +42,7 @@ public class ImageService {
      */
     public Image save(Image image) {
         log.debug("Request to save image: {}", image);
-        if (image.getId() != null) {
+        if (image.getId() == null) {
             // Create: set owner
             image.setUserId(userService.getCurrentUser().getId());
         } else {
