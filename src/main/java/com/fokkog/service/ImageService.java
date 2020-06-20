@@ -2,13 +2,17 @@ package com.fokkog.service;
 
 import com.fokkog.domain.Image;
 import com.fokkog.repository.ImageRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -23,8 +27,11 @@ public class ImageService {
 
     private final ImageRepository imageRepository;
 
-    public ImageService(ImageRepository imageRepository) {
+    private final UserService userService;
+
+    public ImageService(ImageRepository imageRepository, UserService userService) {
         this.imageRepository = imageRepository;
+        this.userService = userService;
     }
 
     /**
@@ -34,7 +41,14 @@ public class ImageService {
      * @return the persisted entity.
      */
     public Image save(Image image) {
-        log.debug("Request to save Image : {}", image);
+        log.debug("Request to save image: {}", image);
+        if (image.getId() != null) {
+            // Create: set owner
+            image.setUserId(userService.getCurrentUser().getId());
+        } else {
+            // Update: check owner
+            findOne(image.getId());
+        }
         return imageRepository.save(image);
     }
 
@@ -45,8 +59,8 @@ public class ImageService {
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<Image> findAll(Pageable pageable) {
-        log.debug("Request to get all Images");
+    public Page<Image> findByUserIsCurrentUser(Pageable pageable) {
+        log.debug("Request to get own images");
         return imageRepository.findByUserIsCurrentUser(pageable);
     }
 
@@ -59,8 +73,15 @@ public class ImageService {
      */
     @Transactional(readOnly = true)
     public Optional<Image> findOne(Long id) {
-        log.debug("Request to get Image : {}", id);
-        return imageRepository.findById(id);
+        log.debug("Request to get image: {}", id);
+        Optional<Image> image = imageRepository.findById(id);
+        if (!image.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        if (!image.get().getUserId().equals(userService.getCurrentUser().getId())) {
+            throw new AccessDeniedException("Not the owner");
+        }
+        return image;
     }
 
     /**
@@ -69,8 +90,9 @@ public class ImageService {
      * @param id the id of the entity.
      */
     public void delete(Long id) {
-        log.debug("Request to delete Image : {}", id);
-
+        log.debug("Request to delete image: {}", id);
+        // Check owner
+        findOne(id);
         imageRepository.deleteById(id);
     }
 }
