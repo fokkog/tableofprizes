@@ -49,6 +49,7 @@ public class CacheConfiguration {
             createCache(cm, com.fokkog.domain.Authority.class.getName());
             createCache(cm, com.fokkog.domain.User.class.getName() + ".authorities");
             createCache(cm, com.fokkog.domain.Image.class.getName());
+            createCache(cm, com.fokkog.domain.TableOfPrizes.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

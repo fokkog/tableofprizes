@@ -1,0 +1,23 @@
+{
+  "tableOfPrizesApp": {
+    "tableOfPrizes": {
+      "home": {
+        "title": "Table Of Prizes",
+        "createLabel": "Maak een nieuwe Table Of Prizes",
+        "createOrEditLabel": "Maak of wijzig een Table Of Prizes",
+        "notFound": "No Table Of Prizes found"
+      },
+      "created": "A new Table Of Prizes is created with identifier {{ param }}",
+      "updated": "A Table Of Prizes is updated with identifier {{ param }}",
+      "deleted": "A Table Of Prizes is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Bent u zeker dat u Table Of Prizes {{ id }} wilt verwijderen?"
+      },
+      "detail": {
+        "title": "Table Of Prizes"
+      },
+      "name": "Name",
+      "user": "User"
+    }
+  }
+}
