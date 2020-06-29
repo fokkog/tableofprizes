@@ -57,13 +57,13 @@ public class TableOfPrizesResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static TableOfPrizes createEntity(EntityManager em) {
-        TableOfPrizes tableOfPrizes = new TableOfPrizes()
-            .name(DEFAULT_NAME);
+        TableOfPrizes tableOfPrizes = new TableOfPrizes();
+        tableOfPrizes.setName(DEFAULT_NAME);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
         em.flush();
-        tableOfPrizes.setUser(user);
+        tableOfPrizes.setUserId(user.getId());
         return tableOfPrizes;
     }
     /**
@@ -73,13 +73,13 @@ public class TableOfPrizesResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static TableOfPrizes createUpdatedEntity(EntityManager em) {
-        TableOfPrizes tableOfPrizes = new TableOfPrizes()
-            .name(UPDATED_NAME);
+        TableOfPrizes tableOfPrizes = new TableOfPrizes();
+        tableOfPrizes.setName(UPDATED_NAME);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
         em.flush();
-        tableOfPrizes.setUser(user);
+        tableOfPrizes.setUserId(user.getId());
         return tableOfPrizes;
     }
 
@@ -191,8 +191,7 @@ public class TableOfPrizesResourceIT {
         TableOfPrizes updatedTableOfPrizes = tableOfPrizesRepository.findById(tableOfPrizes.getId()).get();
         // Disconnect from session so that the updates on updatedTableOfPrizes are not directly saved in db
         em.detach(updatedTableOfPrizes);
-        updatedTableOfPrizes
-            .name(UPDATED_NAME);
+        updatedTableOfPrizes.setName(UPDATED_NAME);
 
         restTableOfPrizesMockMvc.perform(put("/api/table-of-prizes").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)

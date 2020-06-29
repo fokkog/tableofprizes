@@ -52,7 +52,7 @@ public class TableOfPrizesResource {
      */
     @PostMapping("/table-of-prizes")
     public ResponseEntity<TableOfPrizes> createTableOfPrizes(@Valid @RequestBody TableOfPrizes tableOfPrizes) throws URISyntaxException {
-        log.debug("REST request to save TableOfPrizes : {}", tableOfPrizes);
+        log.debug("REST request to save tableOfPrizes : {}", tableOfPrizes);
         if (tableOfPrizes.getId() != null) {
             throw new BadRequestAlertException("A new tableOfPrizes cannot already have an ID", ENTITY_NAME, "idexists");
         }
@@ -73,7 +73,7 @@ public class TableOfPrizesResource {
      */
     @PutMapping("/table-of-prizes")
     public ResponseEntity<TableOfPrizes> updateTableOfPrizes(@Valid @RequestBody TableOfPrizes tableOfPrizes) throws URISyntaxException {
-        log.debug("REST request to update TableOfPrizes : {}", tableOfPrizes);
+        log.debug("REST request to update tableOfPrizes : {}", tableOfPrizes);
         if (tableOfPrizes.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
@@ -90,9 +90,9 @@ public class TableOfPrizesResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tableOfPrizes in body.
      */
     @GetMapping("/table-of-prizes")
-    public ResponseEntity<List<TableOfPrizes>> getAllTableOfPrizes(Pageable pageable) {
-        log.debug("REST request to get a page of TableOfPrizes");
-        Page<TableOfPrizes> page = tableOfPrizesService.findAll(pageable);
+    public ResponseEntity<List<TableOfPrizes>> getOwnTableOfPrizes(Pageable pageable) {
+        log.debug("REST request to get a page of tableOfPrizes");
+        Page<TableOfPrizes> page = tableOfPrizesService.findByUserIsCurrentUser(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
@@ -105,7 +105,7 @@ public class TableOfPrizesResource {
      */
     @GetMapping("/table-of-prizes/{id}")
     public ResponseEntity<TableOfPrizes> getTableOfPrizes(@PathVariable Long id) {
-        log.debug("REST request to get TableOfPrizes : {}", id);
+        log.debug("REST request to get tableOfPrizes : {}", id);
         Optional<TableOfPrizes> tableOfPrizes = tableOfPrizesService.findOne(id);
         return ResponseUtil.wrapOrNotFound(tableOfPrizes);
     }
@@ -118,7 +118,7 @@ public class TableOfPrizesResource {
      */
     @DeleteMapping("/table-of-prizes/{id}")
     public ResponseEntity<Void> deleteTableOfPrizes(@PathVariable Long id) {
-        log.debug("REST request to delete TableOfPrizes : {}", id);
+        log.debug("REST request to delete tableOfPrizes : {}", id);
 
         tableOfPrizesService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();

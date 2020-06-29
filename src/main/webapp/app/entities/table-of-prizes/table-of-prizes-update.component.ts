@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
 
 import { ITableOfPrizes, TableOfPrizes } from 'app/shared/model/table-of-prizes.model';
 import { TableOfPrizesService } from './table-of-prizes.service';
-import { IUser } from 'app/core/user/user.model';
-import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-table-of-prizes-update',
@@ -16,26 +14,18 @@ import { UserService } from 'app/core/user/user.service';
 })
 export class TableOfPrizesUpdateComponent implements OnInit {
   isSaving = false;
-  users: IUser[] = [];
 
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required, Validators.maxLength(100)]],
-    user: [null, Validators.required],
+    userId: [],
   });
 
-  constructor(
-    protected tableOfPrizesService: TableOfPrizesService,
-    protected userService: UserService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected tableOfPrizesService: TableOfPrizesService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ tableOfPrizes }) => {
       this.updateForm(tableOfPrizes);
-
-      this.userService.query().subscribe((res: HttpResponse<IUser[]>) => (this.users = res.body || []));
     });
   }
 
@@ -43,7 +33,7 @@ export class TableOfPrizesUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: tableOfPrizes.id,
       name: tableOfPrizes.name,
-      user: tableOfPrizes.user,
+      userId: tableOfPrizes.userId,
     });
   }
 
@@ -66,7 +56,7 @@ export class TableOfPrizesUpdateComponent implements OnInit {
       ...new TableOfPrizes(),
       id: this.editForm.get(['id'])!.value,
       name: this.editForm.get(['name'])!.value,
-      user: this.editForm.get(['user'])!.value,
+      userId: this.editForm.get(['userId'])!.value,
     };
   }
 
@@ -84,9 +74,5 @@ export class TableOfPrizesUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: IUser): any {
-    return item.id;
   }
 }

@@ -1,20 +1,16 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="tableOfPrizes">
-            <h2><span jhiTranslate="tableOfPrizesApp.tableOfPrizes.detail.title">Table Of Prizes</span> {{ tableOfPrizes.id }}</h2>
+            <h2><span jhiTranslate="TableOfPrizesApp.tableOfPrizes.detail.title">Table Of Prizes</span> {{ tableOfPrizes.id }}</h2>
 
             <hr>
 
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="tableOfPrizesApp.tableOfPrizes.name">Name</span></dt>
+                <dt><span jhiTranslate="TableOfPrizesApp.tableOfPrizes.name">Name</span></dt>
                 <dd>
                     <span>{{ tableOfPrizes.name }}</span>
-                </dd>
-                <dt><span jhiTranslate="tableOfPrizesApp.tableOfPrizes.user">User</span></dt>
-                <dd>
-                    {{ tableOfPrizes.user?.login }}
                 </dd>
             </dl>
 

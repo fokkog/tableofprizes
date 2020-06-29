@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="tableOfPrizesApp.tableOfPrizes.home.title">Table Of Prizes</span>
+        <span jhiTranslate="TableOfPrizesApp.tableOfPrizes.home.title">Table Of Prizes</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-table-of-prizes" [routerLink]="['/table-of-prizes/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="tableOfPrizesApp.tableOfPrizes.home.createLabel">
+            <span  jhiTranslate="TableOfPrizesApp.tableOfPrizes.home.createLabel">
             Create a new Table Of Prizes
             </span>
         </button>
@@ -15,7 +15,7 @@
     <jhi-alert></jhi-alert>
 
     <div class="alert alert-warning" id="no-result" *ngIf="tableOfPrizes?.length === 0">
-        <span jhiTranslate="tableOfPrizesApp.tableOfPrizes.home.notFound">No tableOfPrizes found</span>
+        <span jhiTranslate="TableOfPrizesApp.tableOfPrizes.home.notFound">No tableOfPrizes found</span>
     </div>
 
     <div class="table-responsive" id="entities" *ngIf="tableOfPrizes && tableOfPrizes.length > 0">
@@ -23,8 +23,7 @@
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
                     <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="tableOfPrizesApp.tableOfPrizes.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
-                    <th scope="col"  jhiSortBy="user.login"><span jhiTranslate="tableOfPrizesApp.tableOfPrizes.user">User</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="name"><span jhiTranslate="TableOfPrizesApp.tableOfPrizes.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -32,9 +31,6 @@
                 <tr *ngFor="let tableOfPrizes of tableOfPrizes ;trackBy: trackId">
                     <td><a [routerLink]="['/table-of-prizes', tableOfPrizes.id, 'view']">{{ tableOfPrizes.id }}</a></td>
                     <td>{{ tableOfPrizes.name }}</td>
-                    <td>
-                        {{ tableOfPrizes.user?.login }}
-                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

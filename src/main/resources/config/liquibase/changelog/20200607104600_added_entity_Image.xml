@@ -29,6 +29,7 @@
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
             <column name="url" type="string"/>
+            <column name="user_id" type="string"/>
         </loadData>
     </changeSet>
 

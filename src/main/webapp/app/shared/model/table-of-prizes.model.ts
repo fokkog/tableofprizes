@@ -1,11 +1,9 @@
-import { IUser } from 'app/core/user/user.model';
-
 export interface ITableOfPrizes {
   id?: number;
   name?: string;
-  user?: IUser;
+  userId?: string;
 }
 
 export class TableOfPrizes implements ITableOfPrizes {
-  constructor(public id?: number, public name?: string, public user?: IUser) {}
+  constructor(public id?: number, public name?: string, public userId?: string) {}
 }

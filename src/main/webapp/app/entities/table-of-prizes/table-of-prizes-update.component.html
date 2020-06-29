@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-table-of-prizes-heading" jhiTranslate="tableOfPrizesApp.tableOfPrizes.home.createOrEditLabel">Create or edit a Table Of Prizes</h2>
+            <h2 id="jhi-table-of-prizes-heading" jhiTranslate="TableOfPrizesApp.tableOfPrizes.home.createOrEditLabel">Create or edit a Table Of Prizes</h2>
 
             <div>
                 <jhi-alert-error></jhi-alert-error>
@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tableOfPrizesApp.tableOfPrizes.name" for="field_name">Name</label>
+                    <label class="form-control-label" jhiTranslate="TableOfPrizesApp.tableOfPrizes.name" for="field_name">Name</label>
                     <input type="text" class="form-control" name="name" id="field_name"
                            formControlName="name"/>
                     <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
@@ -27,19 +27,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="tableOfPrizesApp.tableOfPrizes.user" for="field_user">User</label>
-                    <select class="form-control" id="field_user" name="user" formControlName="user">
-                        <option *ngIf="!editForm.get('user')!.value" [ngValue]="null" selected></option>
-                        <option [ngValue]="userOption.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : userOption" *ngFor="let userOption of users; trackBy: trackById">{{ userOption.login }}</option>
-                    </select>
-                </div>
-                <div *ngIf="editForm.get('user')!.invalid && (editForm.get('user')!.dirty || editForm.get('user')!.touched)">
-                    <small class="form-text text-danger"
-                           *ngIf="editForm.get('user')?.errors?.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                    </small>
-                </div>
             </div>
 
             <div>

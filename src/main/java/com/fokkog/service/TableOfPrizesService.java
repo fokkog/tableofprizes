@@ -7,8 +7,11 @@ import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -23,8 +26,11 @@ public class TableOfPrizesService {
 
     private final TableOfPrizesRepository tableOfPrizesRepository;
 
-    public TableOfPrizesService(TableOfPrizesRepository tableOfPrizesRepository) {
+    private final UserService userService;
+
+    public TableOfPrizesService(TableOfPrizesRepository tableOfPrizesRepository, UserService userService) {
         this.tableOfPrizesRepository = tableOfPrizesRepository;
+        this.userService = userService;
     }
 
     /**
@@ -34,7 +40,14 @@ public class TableOfPrizesService {
      * @return the persisted entity.
      */
     public TableOfPrizes save(TableOfPrizes tableOfPrizes) {
-        log.debug("Request to save TableOfPrizes : {}", tableOfPrizes);
+        log.debug("Request to save tableOfPrizes : {}", tableOfPrizes);
+        if (tableOfPrizes.getId() == null) {
+            // Create: set owner
+            tableOfPrizes.setUserId(userService.getCurrentUserId());
+        } else {
+            // Update: check owner
+            findOne(tableOfPrizes.getId());
+        }
         return tableOfPrizesRepository.save(tableOfPrizes);
     }
 
@@ -45,9 +58,10 @@ public class TableOfPrizesService {
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<TableOfPrizes> findAll(Pageable pageable) {
-        log.debug("Request to get all TableOfPrizes");
-        return tableOfPrizesRepository.findAll(pageable);
+    public Page<TableOfPrizes> findByUserIsCurrentUser(Pageable pageable) {
+        log.debug("Request to get own tableOfPrizes");
+        String userId = userService.getCurrentUserId();
+        return tableOfPrizesRepository.findAllByUserId(pageable, userId);
     }
 
 
@@ -59,8 +73,15 @@ public class TableOfPrizesService {
      */
     @Transactional(readOnly = true)
     public Optional<TableOfPrizes> findOne(Long id) {
-        log.debug("Request to get TableOfPrizes : {}", id);
-        return tableOfPrizesRepository.findById(id);
+        log.debug("Request to get tableOfPrizes : {}", id);
+        Optional<TableOfPrizes> tableOfPrizes = tableOfPrizesRepository.findById(id);
+        if (!tableOfPrizes.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        if (!tableOfPrizes.get().getUserId().equals(userService.getCurrentUserId())) {
+            throw new AccessDeniedException("Not the owner");
+        }
+        return tableOfPrizes;
     }
 
     /**
@@ -69,8 +90,9 @@ public class TableOfPrizesService {
      * @param id the id of the entity.
      */
     public void delete(Long id) {
-        log.debug("Request to delete TableOfPrizes : {}", id);
-
+        log.debug("Request to delete tableOfPrizes : {}", id);
+        // Check owner
+        findOne(id);
         tableOfPrizesRepository.deleteById(id);
     }
 }

@@ -1,17 +1,17 @@
 {
-  "tableOfPrizesApp": {
+  "TableOfPrizesApp": {
     "tableOfPrizes": {
       "home": {
-        "title": "Table Of Prizes",
-        "createLabel": "Create a new Table Of Prizes",
-        "createOrEditLabel": "Create or edit a Table Of Prizes",
-        "notFound": "No Table Of Prizes found"
+        "title": "Table of prizes",
+        "createLabel": "Create a new table of prizes",
+        "createOrEditLabel": "Create or edit a table of prizes",
+        "notFound": "No tables of prizes found"
       },
-      "created": "A new Table Of Prizes is created with identifier {{ param }}",
-      "updated": "A Table Of Prizes is updated with identifier {{ param }}",
-      "deleted": "A Table Of Prizes is deleted with identifier {{ param }}",
+      "created": "A new table of prizes is created with identifier {{ param }}",
+      "updated": "A table of prizes is updated with identifier {{ param }}",
+      "deleted": "A table of prizes is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Table Of Prizes {{ id }}?"
+        "question": "Are you sure you want to delete table of prizes {{ id }}?"
       },
       "detail": {
         "title": "Table Of Prizes"
