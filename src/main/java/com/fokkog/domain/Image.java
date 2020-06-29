@@ -50,22 +50,12 @@ public class Image implements Serializable {
         return name;
     }
 
-    public Image name(String name) {
-        this.name = name;
-        return this;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
     public String getUrl() {
         return url;
-    }
-
-    public Image url(String url) {
-        this.url = url;
-        return this;
     }
 
     public void setUrl(String url) {

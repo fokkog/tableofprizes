@@ -60,9 +60,9 @@ public class ImageResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Image createEntity(EntityManager em) {
-        Image image = new Image()
-            .name(DEFAULT_NAME)
-            .url(DEFAULT_URL);
+        Image image = new Image();
+        image.setName(DEFAULT_NAME);
+        image.setUrl(DEFAULT_URL);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
@@ -77,9 +77,9 @@ public class ImageResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Image createUpdatedEntity(EntityManager em) {
-        Image image = new Image()
-            .name(UPDATED_NAME)
-            .url(UPDATED_URL);
+        Image image = new Image();
+        image.setName(UPDATED_NAME);
+        image.setUrl(UPDATED_URL);
         // Add required entity
         User user = UserResourceIT.createEntity(em);
         em.persist(user);
@@ -218,9 +218,8 @@ public class ImageResourceIT {
         Image updatedImage = imageRepository.findById(image.getId()).get();
         // Disconnect from session so that the updates on updatedImage are not directly saved in db
         em.detach(updatedImage);
-        updatedImage
-            .name(UPDATED_NAME)
-            .url(UPDATED_URL);
+        updatedImage.setName(UPDATED_NAME);
+        updatedImage.setUrl(UPDATED_URL);
 
         restImageMockMvc.perform(put("/api/images").with(csrf())
             .contentType(MediaType.APPLICATION_JSON)

@@ -5,7 +5,7 @@
         "title": "Images",
         "createLabel": "Create a new image",
         "createOrEditLabel": "Create or edit an image",
-        "notFound": "No Images found"
+        "notFound": "No images found"
       },
       "created": "A new image is created with identifier {{ param }}",
       "updated": "An image is updated with identifier {{ param }}",
