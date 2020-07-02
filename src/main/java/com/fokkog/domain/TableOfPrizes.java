@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A TableOfPrizes.
@@ -31,6 +33,9 @@ public class TableOfPrizes implements Serializable {
     @Column(name = "user_id")
     private String userId;
 
+    @OneToMany(mappedBy = "tableOfPrizes", fetch = FetchType.EAGER)
+    private Set<Prize> prizes = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -54,6 +59,14 @@ public class TableOfPrizes implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Set<Prize> getPrizes() {
+        return prizes;
+    }
+
+    public void setPrizes(Set<Prize> prizes) {
+        this.prizes = prizes;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

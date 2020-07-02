@@ -17,7 +17,8 @@
         "title": "Prijzentafel"
       },
       "name": "Naam",
-      "user": "Gebruiker"
+      "user": "Gebruiker",
+      "quantity": "Aantal"
     }
   }
 }

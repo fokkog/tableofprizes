@@ -9,6 +9,7 @@
         "main": "Entiteiten",
         "image": "Afbeelding",
         "tableOfPrizes": "Prijzentafel",
+        "prize": "Prize",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

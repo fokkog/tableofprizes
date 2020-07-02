@@ -1,0 +1,39 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "tableOfPrizes",
+      "otherEntityName": "tableOfPrizes",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"],
+      "otherEntityField": "name",
+      "otherEntityRelationshipName": "prize"
+    },
+    {
+      "relationshipName": "image",
+      "otherEntityName": "image",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": ["required"],
+      "otherEntityField": "name",
+      "otherEntityRelationshipName": "prize"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required", "min"],
+      "fieldValidateRulesMin": "1"
+    }
+  ],
+  "changelogDate": "20200702100338",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "serviceClass",
+  "entityTableName": "prize",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "pagination"
+}

@@ -17,7 +17,8 @@
         "title": "Table Of Prizes"
       },
       "name": "Name",
-      "user": "User"
+      "user": "User",
+      "quantity": "Quantity"
     }
   }
 }
