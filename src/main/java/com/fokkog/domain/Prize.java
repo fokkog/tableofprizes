@@ -1,6 +1,6 @@
 package com.fokkog.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -31,12 +31,11 @@ public class Prize implements Serializable {
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties(value = "prizes", allowSetters = true)
+    @JsonIgnore
     private TableOfPrizes tableOfPrizes;
 
     @ManyToOne(optional = false)
     @NotNull
-    @JsonIgnoreProperties(value = "prizes", allowSetters = true)
     private Image image;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
