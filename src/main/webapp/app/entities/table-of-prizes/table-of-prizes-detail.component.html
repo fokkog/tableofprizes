@@ -12,6 +12,17 @@
                 <dd>
                     <span>{{ tableOfPrizes.name }}</span>
                 </dd>
+
+                <dt><span jhiTranslate="TableOfPrizesApp.tableOfPrizes.contents">Contents</span></dt>
+                <dd>
+                    <table>
+                        <tr *ngFor="let prize of tableOfPrizes.prizes">
+                            <td>{{ prize.quantity }}x</td>
+                            <td>{{ prize.image?.name }}</td>
+                            <td><img class="thumbnail" [src]="prize.image?.url"></td>
+                        </tr>
+                    </table>
+                </dd>
             </dl>
 
             <button type="submit"

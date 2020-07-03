@@ -17,6 +17,7 @@
         "title": "Prijzentafel"
       },
       "name": "Naam",
+      "contents": "Inhoud",
       "user": "Gebruiker",
       "quantity": "Aantal"
     }
