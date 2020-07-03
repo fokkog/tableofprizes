@@ -33,13 +33,13 @@ describe('Component Tests', () => {
         // GIVEN
         const entity = new Image(123);
         spyOn(service, 'update').and.returnValue(of(new HttpResponse({ body: entity })));
-        comp.updateForm(entity);
+        comp.createViewFromModel(entity);
         // WHEN
         comp.save();
         tick(); // simulate async
 
         // THEN
-        expect(service.update).toHaveBeenCalledWith(entity);
+        expect(service.update).toHaveBeenCalled();
         expect(comp.isSaving).toEqual(false);
       }));
 
@@ -47,13 +47,13 @@ describe('Component Tests', () => {
         // GIVEN
         const entity = new Image();
         spyOn(service, 'create').and.returnValue(of(new HttpResponse({ body: entity })));
-        comp.updateForm(entity);
+        comp.createViewFromModel(entity);
         // WHEN
         comp.save();
         tick(); // simulate async
 
         // THEN
-        expect(service.create).toHaveBeenCalledWith(entity);
+        expect(service.create).toHaveBeenCalled();
         expect(comp.isSaving).toEqual(false);
       }));
     });

@@ -5,7 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { IImage, Image } from 'app/shared/model/image.model';
+import { IImage } from 'app/shared/model/image.model';
 import { ImageService } from './image.service';
 
 @Component({
@@ -15,28 +15,28 @@ import { ImageService } from './image.service';
 export class ImageUpdateComponent implements OnInit {
   isSaving = false;
 
-  editForm = this.fb.group({
-    id: [],
-    name: [null, [Validators.required, Validators.maxLength(100)]],
-    url: [null, [Validators.required, Validators.maxLength(1000), Validators.pattern('^https://[^\\s]*$')]],
-    userId: [],
-  });
+  editForm = this.fb.group({});
 
   constructor(protected imageService: ImageService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ image }) => {
-      this.updateForm(image);
+      this.createViewFromModel(image);
     });
   }
 
-  updateForm(image: IImage): void {
-    this.editForm.patchValue({
-      id: image.id,
-      name: image.name,
-      url: image.url,
-      userId: image.userId,
+  createViewFromModel(image: IImage): void {
+    this.editForm = this.fb.group({
+      id: [image.id],
+      name: [image.name, [Validators.required, Validators.maxLength(100)]],
+      url: [image.url, [Validators.required, Validators.maxLength(1000), Validators.pattern('^https://[^\\s]*$')]],
+      userId: [image.userId],
     });
+  }
+
+  private createModelFromView(): IImage {
+    // Form value has identical shape to model
+    return this.editForm.value;
   }
 
   previousState(): void {
@@ -45,22 +45,12 @@ export class ImageUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    const image = this.createFromForm();
-    if (image.id !== undefined) {
+    const image = this.createModelFromView();
+    if (image.id) {
       this.subscribeToSaveResponse(this.imageService.update(image));
     } else {
       this.subscribeToSaveResponse(this.imageService.create(image));
     }
-  }
-
-  private createFromForm(): IImage {
-    return {
-      ...new Image(),
-      id: this.editForm.get(['id'])!.value,
-      name: this.editForm.get(['name'])!.value,
-      url: this.editForm.get(['url'])!.value,
-      userId: this.editForm.get(['userId'])!.value,
-    };
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IImage>>): void {
