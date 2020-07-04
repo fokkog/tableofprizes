@@ -27,6 +27,32 @@
                     </div>
                 </div>
 
+                <label class="form-control-label" jhiTranslate="TableOfPrizesApp.tableOfPrizes.contents" for="field_name">Contents</label>
+                <table formArrayName="prizes">
+                    <tr *ngFor="let row of getViewRows().controls; let pointIndex=index" [formGroupName]="pointIndex">
+                        <td>
+                            <input type="text" class="form-control" name="id" id="field_name"
+                                formControlName="id" />
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="quantity" id="field_name"
+                                formControlName="quantity" />
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="imageId" id="field_name"
+                                formControlName="imageId" />
+                        </td>
+                        <td>
+                            <button type="button" (click)="deleteViewRow(pointIndex)">Delete</button>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" (click)="addViewRow()">Add</button>
+                                
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="userId" id="field_userId"
+                           formControlName="userId"/>
+                </div>
             </div>
 
             <div>
@@ -39,5 +65,8 @@
                 </button>
             </div>
         </form>
+
+        <br/>
+        <pre>{{ this.editForm.value | json }}</pre>
     </div>
 </div>
