@@ -7,9 +7,8 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entiteiten",
-        "image": "Afbeelding",
-        "tableOfPrizes": "Prijzentafel",
-        "prize": "Prize",
+        "image": "Afbeeldingen",
+        "tableOfPrizes": "Prijzentafels",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
