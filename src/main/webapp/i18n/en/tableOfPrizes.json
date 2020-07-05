@@ -14,12 +14,12 @@
         "question": "Are you sure you want to delete table of prizes {{ id }}?"
       },
       "detail": {
-        "title": "Table Of Prizes"
+        "title": "Table of prizes"
       },
       "name": "Name",
       "contents": "Contents",
-      "user": "User",
-      "quantity": "Quantity"
+      "addprize": "Add",
+      "deleteprize": "Delete"
     }
   }
 }

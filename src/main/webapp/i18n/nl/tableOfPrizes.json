@@ -18,8 +18,8 @@
       },
       "name": "Naam",
       "contents": "Inhoud",
-      "user": "Gebruiker",
-      "quantity": "Aantal"
+      "addprize": "Toevoegen",
+      "deleteprize": "Verwijderen"
     }
   }
 }
