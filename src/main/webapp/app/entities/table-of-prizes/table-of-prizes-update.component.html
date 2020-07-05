@@ -31,24 +31,59 @@
                 <table formArrayName="prizes">
                     <tr *ngFor="let row of getViewRows().controls; let pointIndex=index" [formGroupName]="pointIndex">
                         <td>
-                            <input type="text" class="form-control" name="id" id="field_name"
+                            <input type="hidden" class="form-control" name="id" id="field_name"
                                 formControlName="id" />
-                        </td>
-                        <td>
-                            <input type="text" class="form-control" name="quantity" id="field_name"
+
+                            <input type="number" class="form-control" name="quantity" id="field_quantity"
                                 formControlName="quantity" />
+                            <div *ngIf="row.get('quantity')!.invalid && (row.get('quantity')!.dirty || row.get('quantity')!.touched)">
+                                <small class="form-text text-danger"
+                                        *ngIf="row.get('quantity')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                        *ngIf="row.get('quantity')?.errors?.min" jhiTranslate="entity.validation.min" [translateValues]="{ min: 1 }">
+                                    This field should be at least 1.
+                                </small>
+                                <small class="form-text text-danger"
+                                    [hidden]="!row.get('quantity')?.errors?.number" jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="imageId" id="field_name"
-                                formControlName="imageId" />
+                            <select class="form-control" id="field_imageId" name="imageId" formControlName="imageId">
+                                <option *ngIf="!row.get('imageId')!.value" [ngValue]="null" selected></option>
+                                <option *ngFor="let imageOption of images; trackBy: trackId" [ngValue]="imageOption.id">{{ imageOption.name }}</option>
+                            </select>
+                            <div *ngIf="row.get('imageId')!.invalid && (row.get('imageId')!.dirty || row.get('imageId')!.touched)">
+                                <small class="form-text text-danger"
+                                    *ngIf="row.get('imageId')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                            </div>
                         </td>
                         <td>
-                            <button type="button" (click)="deleteViewRow(pointIndex)">Delete</button>
+                            <img *ngIf="findImageUrlById(row.get('imageId')!.value)" class="thumbnail" [src]="findImageUrlById(row.get('imageId')!.value)">
+                        </td>
+                        <td>
+                            <button type="button" (click)="deleteViewRow(pointIndex)" class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="TableOfPrizesApp.tableOfPrizes.deleteprize">Delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td>
+                            <button type="button" (click)="addViewRow()" class="btn btn-primary btn-sm">
+                                <fa-icon icon="plus"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="TableOfPrizesApp.tableOfPrizes.addprize">Add</span>
+                            </button>
                         </td>
                     </tr>
                 </table>
-                <button type="button" (click)="addViewRow()">Add</button>
-                                
+        
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="userId" id="field_userId"
                            formControlName="userId"/>
@@ -65,8 +100,5 @@
                 </button>
             </div>
         </form>
-
-        <br/>
-        <pre>{{ this.editForm.value | json }}</pre>
     </div>
 </div>
