@@ -1,5 +1,6 @@
 package com.fokkog.service;
 
+import com.fokkog.domain.Prize;
 import com.fokkog.domain.TableOfPrizes;
 import com.fokkog.repository.TableOfPrizesRepository;
 import org.slf4j.Logger;
@@ -47,6 +48,10 @@ public class TableOfPrizesService {
         } else {
             // Update: check owner
             findOne(tableOfPrizes.getId());
+        }
+        // Fix up JsonIgnore'd property
+        for (Prize prize : tableOfPrizes.getPrizes()) {
+        	prize.setTableOfPrizes(tableOfPrizes);
         }
         return tableOfPrizesRepository.save(tableOfPrizes);
     }

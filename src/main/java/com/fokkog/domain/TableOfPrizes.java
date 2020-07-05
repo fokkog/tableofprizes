@@ -33,7 +33,7 @@ public class TableOfPrizes implements Serializable {
     @Column(name = "user_id")
     private String userId;
 
-    @OneToMany(mappedBy = "tableOfPrizes", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "tableOfPrizes", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Prize> prizes = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
