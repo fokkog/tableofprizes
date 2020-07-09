@@ -31,8 +31,8 @@ describe('Component Tests', () => {
     describe('save', () => {
       it('Should call update service on save for existing entity', fakeAsync(() => {
         // GIVEN
-        const entity = new Image(123);
-        spyOn(service, 'update').and.returnValue(of(new HttpResponse({ body: entity })));
+        const entity = new Image(123, '', '', '');
+        const spy = spyOn(service, 'update').and.returnValue(of(new HttpResponse({ body: entity })));
         comp.createViewFromModel(entity);
         // WHEN
         comp.save();
@@ -40,13 +40,14 @@ describe('Component Tests', () => {
 
         // THEN
         expect(service.update).toHaveBeenCalled();
+        expect(JSON.stringify(spy.calls.mostRecent().args[0])).toBe(JSON.stringify(entity));
         expect(comp.isSaving).toEqual(false);
       }));
 
       it('Should call create service on save for new entity', fakeAsync(() => {
         // GIVEN
-        const entity = new Image();
-        spyOn(service, 'create').and.returnValue(of(new HttpResponse({ body: entity })));
+        const entity = new Image(undefined, '', '', '');
+        const spy = spyOn(service, 'create').and.returnValue(of(new HttpResponse({ body: entity })));
         comp.createViewFromModel(entity);
         // WHEN
         comp.save();
@@ -54,6 +55,7 @@ describe('Component Tests', () => {
 
         // THEN
         expect(service.create).toHaveBeenCalled();
+        expect(JSON.stringify(spy.calls.mostRecent().args[0])).toBe(JSON.stringify(entity, (_, v) => (v === undefined ? null : v)));
         expect(comp.isSaving).toEqual(false);
       }));
     });
