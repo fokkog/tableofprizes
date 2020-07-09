@@ -8,6 +8,13 @@
     <packaging>jar</packaging>
     <name>Table Of Prizes</name>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
     <properties>
         <maven.version>3.3.9</maven.version>
         <java.version>1.8</java.version>
