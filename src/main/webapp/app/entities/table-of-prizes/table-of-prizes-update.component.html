@@ -31,10 +31,10 @@
                 <table formArrayName="prizes">
                     <tr *ngFor="let row of getViewRows().controls; let pointIndex=index" [formGroupName]="pointIndex">
                         <td>
-                            <input type="hidden" class="form-control" name="id" id="field_name"
+                            <input type="hidden" class="form-control" name="id" [id]="'field_name_' + pointIndex"
                                 formControlName="id" />
 
-                            <input type="number" class="form-control" name="quantity" id="field_quantity"
+                            <input type="number" class="form-control" name="quantity" [id]="'field_quantity_' + pointIndex"
                                 formControlName="quantity" />
                             <div *ngIf="row.get('quantity')!.invalid && (row.get('quantity')!.dirty || row.get('quantity')!.touched)">
                                 <small class="form-text text-danger"
@@ -52,7 +52,7 @@
                             </div>
                         </td>
                         <td>
-                            <select class="form-control" id="field_imageId" name="imageId" formControlName="imageId">
+                            <select class="form-control" [id]="'field_imageId_' + pointIndex" name="imageId" formControlName="imageId">
                                 <option *ngIf="!row.get('imageId')!.value" [ngValue]="null" selected></option>
                                 <option *ngFor="let imageOption of images; trackBy: trackId" [ngValue]="imageOption.id">{{ imageOption.name }}</option>
                             </select>
@@ -95,7 +95,7 @@
                     <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
 
-                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="isSaving" class="btn btn-primary">
                     <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>

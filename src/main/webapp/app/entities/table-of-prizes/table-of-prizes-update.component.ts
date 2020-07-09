@@ -97,12 +97,15 @@ export class TableOfPrizesUpdateComponent implements OnInit {
   }
 
   save(): void {
-    this.isSaving = true;
-    const tableOfPrizes = this.createModelFromView();
-    if (tableOfPrizes.id) {
-      this.subscribeToSaveResponse(this.tableOfPrizesService.update(tableOfPrizes));
-    } else {
-      this.subscribeToSaveResponse(this.tableOfPrizesService.create(tableOfPrizes));
+    this.editForm.markAllAsTouched();
+    if (this.editForm.valid) {
+      this.isSaving = true;
+      const tableOfPrizes = this.createModelFromView();
+      if (tableOfPrizes.id) {
+        this.subscribeToSaveResponse(this.tableOfPrizesService.update(tableOfPrizes));
+      } else {
+        this.subscribeToSaveResponse(this.tableOfPrizesService.create(tableOfPrizes));
+      }
     }
   }
 
