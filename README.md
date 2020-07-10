@@ -1,5 +1,7 @@
 # Table Of Prizes
 
+![](https://github.com/fokkog/tableofprizes/workflows/CI/badge.svg)
+
 ## intro
 
 Once ready, this application intends to support a **virtual table of prizes**.
@@ -54,7 +56,7 @@ web.config contents:
 Differences between running locally and running in the Azure cloud:
 
 1. The DB provider changes from H2 (in-memory) to Azure SQL Database (SQL Server in the cloud, the cheapest DB option available in Azure).
-2. Log levels are higher.
+2. Log levels become lower.
 
 ## lessons learned so far
 
