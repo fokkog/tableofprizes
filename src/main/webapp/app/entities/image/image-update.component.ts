@@ -44,12 +44,15 @@ export class ImageUpdateComponent implements OnInit {
   }
 
   save(): void {
-    this.isSaving = true;
-    const image = this.createModelFromView();
-    if (image.id) {
-      this.subscribeToSaveResponse(this.imageService.update(image));
-    } else {
-      this.subscribeToSaveResponse(this.imageService.create(image));
+    this.editForm.markAllAsTouched();
+    if (this.editForm.valid) {
+      this.isSaving = true;
+      const image = this.createModelFromView();
+      if (image.id) {
+        this.subscribeToSaveResponse(this.imageService.update(image));
+      } else {
+        this.subscribeToSaveResponse(this.imageService.create(image));
+      }
     }
   }
 

@@ -31,7 +31,7 @@ describe('Component Tests', () => {
     describe('save', () => {
       it('Should call update service on save for existing entity', fakeAsync(() => {
         // GIVEN
-        const entity = new Image(123, '', '', '');
+        const entity = new Image(123, 'name', 'https://url.com', 'userId');
         const spy = spyOn(service, 'update').and.returnValue(of(new HttpResponse({ body: entity })));
         comp.createViewFromModel(entity);
         // WHEN
@@ -46,7 +46,7 @@ describe('Component Tests', () => {
 
       it('Should call create service on save for new entity', fakeAsync(() => {
         // GIVEN
-        const entity = new Image(undefined, '', '', '');
+        const entity = new Image(undefined, 'name', 'https://url.com', 'userId');
         const spy = spyOn(service, 'create').and.returnValue(of(new HttpResponse({ body: entity })));
         comp.createViewFromModel(entity);
         // WHEN
