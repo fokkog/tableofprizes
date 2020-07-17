@@ -11,7 +11,7 @@
       "updated": "Afbeelding {{ param }} gewijzigd",
       "deleted": "Afbeelding {{ param }} verwijderd",
       "delete": {
-        "question": "Bent u zeker dat u afbeelding {{ id }} wilt verwijderen?"
+        "question": "Bent u zeker dat u afbeelding {{ param }} wilt verwijderen?"
       },
       "detail": {
         "title": "Afbeelding"

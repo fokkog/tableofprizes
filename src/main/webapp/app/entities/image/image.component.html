@@ -22,7 +22,6 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
-                    <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"  jhiSortBy="name"><span jhiTranslate="TableOfPrizesApp.image.name">Name</span> <fa-icon icon="sort"></fa-icon></th>
                     <th scope="col"></th>
                     <th scope="col"></th>
@@ -30,8 +29,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let image of images ;trackBy: trackId">
-                    <td><a [routerLink]="['/image', image.id, 'view']">{{ image.id }}</a></td>
-                    <td>{{ image.name }}</td>
+                    <td><a [routerLink]="['/image', image.id, 'view']">{{ image.name }}</a></td>
                     <td><img class="thumbnail" [src]="image.url"></td>
                     <td class="text-right">
                         <div class="btn-group">

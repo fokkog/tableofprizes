@@ -58,7 +58,7 @@ public class ImageResource {
         }
         Image result = imageService.save(image);
         return ResponseEntity.created(new URI("/api/images/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getName()))
             .body(result);
     }
 
@@ -79,7 +79,7 @@ public class ImageResource {
         }
         Image result = imageService.save(image);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, image.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, result.getName()))
             .body(result);
     }
 
@@ -119,7 +119,7 @@ public class ImageResource {
     @DeleteMapping("/images/{id}")
     public ResponseEntity<Void> deleteImage(@PathVariable Long id) {
         log.debug("REST request to delete image: {}", id);
-        imageService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+        Image result = imageService.delete(id);
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, result.getName())).build();
     }
 }

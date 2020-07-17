@@ -7,11 +7,11 @@
         "createOrEditLabel": "Create or edit an image",
         "notFound": "No images found"
       },
-      "created": "A new image is created with identifier {{ param }}",
-      "updated": "An image is updated with identifier {{ param }}",
-      "deleted": "An image is deleted with identifier {{ param }}",
+      "created": "Image {{ param }} created",
+      "updated": "Image {{ param }} updated",
+      "deleted": "Image {{ param }} deleted",
       "delete": {
-        "question": "Are you sure you want to delete image {{ id }}?"
+        "question": "Are you sure you want to delete image {{ param }}?"
       },
       "detail": {
         "title": "Image"

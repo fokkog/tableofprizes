@@ -90,10 +90,11 @@ public class ImageService {
      *
      * @param id the id of the entity.
      */
-    public void delete(Long id) {
+    public Image delete(Long id) {
         log.debug("Request to delete image: {}", id);
         // Check owner
-        findOne(id);
+        Optional<Image> image = findOne(id);
         imageRepository.deleteById(id);
+        return image.get();
     }
 }
