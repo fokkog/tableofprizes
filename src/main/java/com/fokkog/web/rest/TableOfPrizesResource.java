@@ -58,7 +58,7 @@ public class TableOfPrizesResource {
         }
         TableOfPrizes result = tableOfPrizesService.save(tableOfPrizes);
         return ResponseEntity.created(new URI("/api/table-of-prizes/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getName()))
             .body(result);
     }
 
@@ -79,7 +79,7 @@ public class TableOfPrizesResource {
         }
         TableOfPrizes result = tableOfPrizesService.save(tableOfPrizes);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, tableOfPrizes.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, result.getName()))
             .body(result);
     }
 
@@ -119,8 +119,7 @@ public class TableOfPrizesResource {
     @DeleteMapping("/table-of-prizes/{id}")
     public ResponseEntity<Void> deleteTableOfPrizes(@PathVariable Long id) {
         log.debug("REST request to delete tableOfPrizes : {}", id);
-
-        tableOfPrizesService.delete(id);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+        TableOfPrizes result = tableOfPrizesService.delete(id);
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, result.getName())).build();
     }
 }

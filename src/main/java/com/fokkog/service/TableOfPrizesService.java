@@ -94,10 +94,11 @@ public class TableOfPrizesService {
      *
      * @param id the id of the entity.
      */
-    public void delete(Long id) {
+    public TableOfPrizes delete(Long id) {
         log.debug("Request to delete tableOfPrizes : {}", id);
         // Check owner
-        findOne(id);
+        Optional<TableOfPrizes> tableOfPrizes = findOne(id);
         tableOfPrizesRepository.deleteById(id);
+        return tableOfPrizes.get();
     }
 }

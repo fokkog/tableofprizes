@@ -11,7 +11,7 @@
       "updated": "Prijzentafel {{ param }} gewijzigd",
       "deleted": "Prijzentafel {{ param }} verwijderd",
       "delete": {
-        "question": "Bent u zeker dat u prijzentafel {{ id }} wilt verwijderen?"
+        "question": "Bent u zeker dat u prijzentafel {{ param }} wilt verwijderen?"
       },
       "detail": {
         "title": "Prijzentafel"
