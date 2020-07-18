@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-10">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-table-of-prizes-heading" jhiTranslate="TableOfPrizesApp.tableOfPrizes.home.createOrEditLabel">Create or edit a Table Of Prizes</h2>
 
@@ -27,9 +27,9 @@
                 </div>
 
                 <label class="form-control-label" jhiTranslate="TableOfPrizesApp.tableOfPrizes.contents" for="field_name">Contents</label>
-                <table formArrayName="prizes">
-                    <tr *ngFor="let row of getViewRows().controls; let pointIndex=index" [formGroupName]="pointIndex">
-                        <td>
+                <div formArrayName="prizes">
+                    <div class="row bottom-buffer" *ngFor="let row of getViewRows().controls; let pointIndex=index" [formGroupName]="pointIndex">
+                        <div class="col-sm-2">
                             <input type="hidden" class="form-control" name="id" [id]="'field_name_' + pointIndex"
                                 formControlName="id" />
 
@@ -49,8 +49,8 @@
                                     This field should be a number.
                                 </small>
                             </div>
-                        </td>
-                        <td>
+                        </div>
+                        <div class="col-sm-4">
                             <select class="form-control" [id]="'field_imageId_' + pointIndex" name="imageId" formControlName="imageId">
                                 <option *ngIf="!row.get('imageId')!.value" [ngValue]="null" selected></option>
                                 <option *ngFor="let imageOption of images; trackBy: trackId" [ngValue]="imageOption.id">{{ imageOption.name }}</option>
@@ -61,27 +61,26 @@
                                     This field is required.
                                 </small>
                             </div>
-                        </td>
-                        <td>
+                        </div>
+                        <div class="col-sm-4">
                             <img *ngIf="findImageUrlById(row.get('imageId')!.value)" class="thumbnail" [src]="findImageUrlById(row.get('imageId')!.value)">
-                        </td>
-                        <td>
+                        </div>
+                        <div class="col-sm-2">
                             <button type="button" (click)="deleteViewRow(pointIndex)" class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="TableOfPrizesApp.tableOfPrizes.deleteprize">Delete</span>
                             </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3"></td>
-                        <td>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
                             <button type="button" (click)="addViewRow()" class="btn btn-primary btn-sm">
                                 <fa-icon icon="plus"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="TableOfPrizesApp.tableOfPrizes.addprize">Add</span>
                             </button>
-                        </td>
-                    </tr>
-                </table>
+                        </div>
+                    </div>
+                </div>
         
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="userId" id="field_userId"

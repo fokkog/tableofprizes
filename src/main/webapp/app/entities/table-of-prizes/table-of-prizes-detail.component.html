@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-10">
         <div *ngIf="tableOfPrizes">
             <h2><span jhiTranslate="TableOfPrizesApp.tableOfPrizes.detail.title">Table Of Prizes</span> {{ tableOfPrizes.name }}</h2>
 
@@ -15,13 +15,11 @@
 
                 <dt><span jhiTranslate="TableOfPrizesApp.tableOfPrizes.contents">Contents</span></dt>
                 <dd>
-                    <table>
-                        <tr *ngFor="let prize of tableOfPrizes.prizes">
-                            <td>{{ prize.quantity }}x</td>
-                            <td>{{ prize.image?.name }}</td>
-                            <td><img class="thumbnail" [src]="prize.image?.url"></td>
-                        </tr>
-                    </table>
+                    <div class="row bottom-buffer" *ngFor="let prize of tableOfPrizes.prizes">
+                        <div class="col-sm-2 col-2">{{ prize.quantity }}</div>
+                        <div class="col-sm-5 col-10">{{ prize.image?.name }}</div>
+                        <div class="col-sm-5"><img class="thumbnail" [src]="prize.image?.url"></div>
+                    </div>
                 </dd>
             </dl>
 

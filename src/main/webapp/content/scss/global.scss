@@ -175,7 +175,16 @@ custom styles section
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 5px;
-  width: 150px;
+  width: 100%;
+  max-width: 240px;
+}
+
+[class*='col-']:not(:last-child) {
+  margin-bottom: 4px;
+}
+
+.bottom-buffer {
+  margin-bottom: 16px;
 }
 
 /* jhipster-needle-scss-add-main JHipster will add new css style */
