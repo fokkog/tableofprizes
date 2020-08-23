@@ -122,4 +122,16 @@ public class TableOfPrizesResource {
         TableOfPrizes result = tableOfPrizesService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, result.getName())).build();
     }
+
+    /**
+     * {@code GET  /public/recent-table-of-prizes} : get recent tableOfPrizes.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tableOfPrizes in body.
+     */
+    @GetMapping("public/table-of-prizes/recent")
+    public ResponseEntity<List<TableOfPrizes>> getRecentTableOfPrizes() {
+        log.debug("REST request to get recent tableOfPrizes");
+        Page<TableOfPrizes> list = tableOfPrizesService.findRecent();
+        return ResponseEntity.ok().body(list.getContent());
+    }
 }

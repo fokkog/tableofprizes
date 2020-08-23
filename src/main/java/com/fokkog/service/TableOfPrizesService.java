@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
@@ -69,7 +70,6 @@ public class TableOfPrizesService {
         return tableOfPrizesRepository.findAllByUserId(pageable, userId);
     }
 
-
     /**
      * Get one tableOfPrizes by id.
      *
@@ -100,5 +100,16 @@ public class TableOfPrizesService {
         Optional<TableOfPrizes> tableOfPrizes = findOne(id);
         tableOfPrizesRepository.deleteById(id);
         return tableOfPrizes.get();
+    }
+
+    /**
+     * Get the most recent tableOfPrizes.
+     *
+     * @return the list of entities.
+     */
+    @Transactional(readOnly = true)
+    public Page<TableOfPrizes> findRecent() {
+        log.debug("Request to get recent tableOfPrizes");
+        return tableOfPrizesRepository.findAll(PageRequest.of(0, 5));
     }
 }

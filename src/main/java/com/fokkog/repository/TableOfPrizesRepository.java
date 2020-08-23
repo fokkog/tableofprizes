@@ -14,4 +14,6 @@ import org.springframework.stereotype.Repository;
 public interface TableOfPrizesRepository extends JpaRepository<TableOfPrizes, Long> {
 
     Page<TableOfPrizes> findAllByUserId(Pageable pageable, String userId);
+
+    Page<TableOfPrizes> findAll(Pageable pageable);
 }
