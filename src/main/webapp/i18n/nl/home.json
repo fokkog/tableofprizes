@@ -1,11 +1,15 @@
 {
   "home": {
     "title": "Prijzentafel",
-    "message": "Dit is de startpagina van prijzentafel.nl. Met deze site kunt u:",
-    "message1": "Een virtuele prijzentafel aanmaken, als u organisator bent van een online bridge drive, Kahoot etcetera",
-    "message2": "Een prijs uitzoeken, als u winnaar bent van zo'n evenement",
+    "notlogged": {
+      "welcome": "Dit is de startpagina van prijzentafel.nl. Met deze site kunt u:",
+      "option1": "Een virtuele prijzentafel aanmaken, als u organisator bent van een online bridge drive, Kahoot etcetera",
+      "option2": "Een prijs uitzoeken, als u winnaar bent van zo'n evenement",
+      "option3": "U kunt ook een aantal recente prijzentafels bekijken:"
+    },
     "logged": {
-      "message": "U bent aangemeld als gebruiker \"{{username}}\"."
+      "confirm": "U bent aangemeld als gebruiker \"{{username}}\".",
+      "goto": "Ga naar"
     }
   }
 }

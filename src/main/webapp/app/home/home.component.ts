@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'app/core/login/login.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
+import { TableOfPrizesService } from 'app/entities/table-of-prizes/table-of-prizes.service';
+import { ITableOfPrizes } from 'app/shared/model/table-of-prizes.model';
 
 @Component({
   selector: 'jhi-home',
@@ -11,11 +13,17 @@ import { Account } from 'app/core/user/account.model';
 })
 export class HomeComponent implements OnInit {
   account: Account | null = null;
+  tableOfPrizes?: ITableOfPrizes[];
 
-  constructor(private accountService: AccountService, private loginService: LoginService) {}
+  constructor(
+    private accountService: AccountService,
+    private loginService: LoginService,
+    private tableOfPrizesService: TableOfPrizesService
+  ) {}
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => (this.account = account));
+    this.tableOfPrizesService.recent().subscribe(res => (this.tableOfPrizes = res.body || []));
   }
 
   isAuthenticated(): boolean {

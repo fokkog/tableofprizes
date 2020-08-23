@@ -13,6 +13,8 @@ type EntityArrayResponseType = HttpResponse<ITableOfPrizes[]>;
 export class TableOfPrizesService {
   public resourceUrl = SERVER_API_URL + 'api/table-of-prizes';
 
+  public publicUrl = SERVER_API_URL + 'api/public/table-of-prizes';
+
   constructor(protected http: HttpClient) {}
 
   create(tableOfPrizes: ITableOfPrizes): Observable<EntityResponseType> {
@@ -34,5 +36,9 @@ export class TableOfPrizesService {
 
   delete(id: number): Observable<HttpResponse<{}>> {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  recent(): Observable<EntityArrayResponseType> {
+    return this.http.get<ITableOfPrizes[]>(this.publicUrl + '/recent', { observe: 'response' });
   }
 }

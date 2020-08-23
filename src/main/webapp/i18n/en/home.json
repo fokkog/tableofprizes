@@ -1,11 +1,15 @@
 {
   "home": {
     "title": "Table Of Prizes",
-    "message": "This is the homepage of tableofprizes.com. With this site you can:",
-    "message1": "Create a virtual tafel of prizes, if you are organising an online bridge drive, Kahoot etcetera",
-    "message2": "Select a prize, if you are a winner of such event",
+    "notlogged": {
+      "welcome": "This is the homepage of tableofprizes.com. With this site you can:",
+      "option1": "Create a virtual tafel of prizes, if you are organising an online bridge drive, Kahoot etcetera",
+      "option2": "Select a prize, if you are a winner of such event",
+      "option3": "You can also view a few recent tables of prizes:"
+    },
     "logged": {
-      "message": "You are logged in as user \"{{username}}\"."
+      "confirm": "You are logged in as user \"{{username}}\".",
+      "goto": "Go to"
     }
   }
 }

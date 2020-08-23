@@ -6,21 +6,42 @@
     <div class="col-md-9">
         <h1 class="display-4" jhiTranslate="home.title">title</h1>
 
-        <p class="lead" jhiTranslate="home.message">message</p>
-        <ul>
-            <li><div jhiTranslate="home.message1">message1</div></li>
-            <li><div jhiTranslate="home.message2">message2</div></li>
-        </ul>
-
         <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-                <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message"
-                    [translateValues]="{ username: account.email }">You are logged in as user "{{ account.email }}".</span>
+            <div *ngSwitchCase="false">
+                <p class="lead" jhiTranslate="home.notlogged.welcome">This is the homepage of tableofprizes.com. With this site you can:</p>
+                <ol>
+                    <li><div jhiTranslate="home.notlogged.option1">Create a virtual table of prizes, if you are organising an online bridge drive, Kahoot etcetera</div></li>
+                    <li><div jhiTranslate="home.notlogged.option2">Select a prize, if you are a winner of such event</div></li>
+                </ol>
+        
+                <div class="alert alert-warning">
+                    <span jhiTranslate="global.messages.info.authenticated.prefix">In both cases you have to </span>
+                    <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a>
+                    <span jhiTranslate="global.messages.info.authenticated.suffix"> to continue.<br/></span>
+                </div>
+                <div *ngIf="tableOfPrizes">
+                    <span jhiTranslate="home.notlogged.option3">You can also view a few recent tables of prizes:</span>
+                    <ul>
+                        <li *ngFor="let tableOfPrize of tableOfPrizes">
+                            <div>{{ tableOfPrize.name }}</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
-                <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a><span jhiTranslate="global.messages.info.authenticated.suffix">, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
+            <div  *ngSwitchCase="true">
+                <div class="alert alert-success">
+                    <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.confirm"
+                        [translateValues]="{ username: account.email }">You are logged in as user "{{ account.email }}".</span>
+                </div>
+                <div>
+                    <span jhiTranslate="home.logged.goto">Go to </span>
+                    <a jhiTranslate="global.menu.entities.image" routerLink="/image">Images</a>.
+                </div>
+                <div>
+                    <span jhiTranslate="home.logged.goto">Go to </span>
+                    <a jhiTranslate="global.menu.entities.tableOfPrizes" routerLink="/image">Tables of Prizes</a>.
+                </div>
             </div>
         </div>
     </div>
