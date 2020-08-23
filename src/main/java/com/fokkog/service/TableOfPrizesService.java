@@ -108,8 +108,24 @@ public class TableOfPrizesService {
      * @return the list of entities.
      */
     @Transactional(readOnly = true)
-    public Page<TableOfPrizes> findRecent() {
-        log.debug("Request to get recent tableOfPrizes");
+    public Page<TableOfPrizes> findRecents() {
+        log.debug("Request to get recent tablesOfPrizes");
         return tableOfPrizesRepository.findAll(PageRequest.of(0, 5));
+    }
+
+    /**
+     * Get one tableOfPrizes by id.
+     *
+     * @param id the id of the entity.
+     * @return the entity.
+     */
+    @Transactional(readOnly = true)
+    public Optional<TableOfPrizes> findOneRecent(Long id) {
+        log.debug("Request to get tableOfPrizes : {}", id);
+        Optional<TableOfPrizes> tableOfPrizes = tableOfPrizesRepository.findById(id);
+        if (!tableOfPrizes.isPresent()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return tableOfPrizes;
     }
 }

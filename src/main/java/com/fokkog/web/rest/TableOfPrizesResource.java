@@ -124,14 +124,26 @@ public class TableOfPrizesResource {
     }
 
     /**
-     * {@code GET  /public/recent-table-of-prizes} : get recent tableOfPrizes.
+     * {@code GET  /public/recent-table-of-prizes} : get some recent tablesOfPrizes.
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tableOfPrizes in body.
      */
     @GetMapping("public/table-of-prizes/recent")
-    public ResponseEntity<List<TableOfPrizes>> getRecentTableOfPrizes() {
-        log.debug("REST request to get recent tableOfPrizes");
-        Page<TableOfPrizes> list = tableOfPrizesService.findRecent();
+    public ResponseEntity<List<TableOfPrizes>> getRecentTablesOfPrizes() {
+        log.debug("REST request to get recent tablesOfPrizes");
+        Page<TableOfPrizes> list = tableOfPrizesService.findRecents();
         return ResponseEntity.ok().body(list.getContent());
+    }
+
+    /**
+     * {@code GET  /public/recent-table-of-prizes} : get one recent tableOfPrizes.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and tableOfPrizes in body.
+     */
+    @GetMapping("public/table-of-prizes/recent/{id}")
+    public ResponseEntity<TableOfPrizes> getRecentTableOfPrizes(@PathVariable Long id) {
+        log.debug("REST request to get recent tableOfPrizes");
+        Optional<TableOfPrizes> tableOfPrizes = tableOfPrizesService.findOneRecent(id);
+        return ResponseUtil.wrapOrNotFound(tableOfPrizes);
     }
 }

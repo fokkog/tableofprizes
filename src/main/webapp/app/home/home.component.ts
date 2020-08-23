@@ -13,7 +13,7 @@ import { ITableOfPrizes } from 'app/shared/model/table-of-prizes.model';
 })
 export class HomeComponent implements OnInit {
   account: Account | null = null;
-  tableOfPrizes?: ITableOfPrizes[];
+  tablesOfPrizes?: ITableOfPrizes[];
 
   constructor(
     private accountService: AccountService,
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.identity().subscribe(account => (this.account = account));
-    this.tableOfPrizesService.recent().subscribe(res => (this.tableOfPrizes = res.body || []));
+    this.tableOfPrizesService.recent().subscribe(res => (this.tablesOfPrizes = res.body || []));
   }
 
   isAuthenticated(): boolean {

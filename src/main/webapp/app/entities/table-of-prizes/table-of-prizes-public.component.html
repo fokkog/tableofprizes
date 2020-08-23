@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-10">
+        <div *ngIf="tableOfPrizes">
+            <h2><span jhiTranslate="TableOfPrizesApp.tableOfPrizes.detail.title">Table Of Prizes</span> {{ tableOfPrizes.name }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="TableOfPrizesApp.tableOfPrizes.name">Name</span></dt>
+                <dd>
+                    <span>{{ tableOfPrizes.name }}</span>
+                </dd>
+
+                <dt><span jhiTranslate="TableOfPrizesApp.tableOfPrizes.contents">Contents</span></dt>
+                <dd>
+                    <div class="row bottom-buffer" *ngFor="let prize of tableOfPrizes.prizes">
+                        <div class="col-sm-2 col-2">{{ prize.quantity }}</div>
+                        <div class="col-sm-5 col-10">{{ prize.image?.name }}</div>
+                        <div class="col-sm-5"><img class="thumbnail" [src]="prize.image?.url"></div>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+        </div>
+    </div>
+</div>

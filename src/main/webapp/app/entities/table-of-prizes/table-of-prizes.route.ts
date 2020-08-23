@@ -11,6 +11,7 @@ import { ITableOfPrizes, TableOfPrizes } from 'app/shared/model/table-of-prizes.
 import { TableOfPrizesService } from './table-of-prizes.service';
 import { TableOfPrizesComponent } from './table-of-prizes.component';
 import { TableOfPrizesDetailComponent } from './table-of-prizes-detail.component';
+import { TableOfPrizesPublicComponent } from './table-of-prizes-public.component';
 import { TableOfPrizesUpdateComponent } from './table-of-prizes-update.component';
 
 @Injectable({ providedIn: 'root' })
@@ -84,5 +85,12 @@ export const tableOfPrizesRoute: Routes = [
       pageTitle: 'TableOfPrizesApp.tableOfPrizes.home.title',
     },
     canActivate: [UserRouteAccessService],
+  },
+  {
+    path: ':id/public',
+    component: TableOfPrizesPublicComponent,
+    data: {
+      pageTitle: 'TableOfPrizesApp.tableOfPrizes.home.title',
+    },
   },
 ];
