@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { TableOfPrizesSharedModule } from 'app/shared/shared.module';
 import { TableOfPrizesComponent } from './table-of-prizes.component';
 import { TableOfPrizesDetailComponent } from './table-of-prizes-detail.component';
-import { TableOfPrizesPublicComponent } from './table-of-prizes-public.component';
+import { TableOfPrizesPreviewComponent } from './table-of-prizes-preview.component';
 import { TableOfPrizesUpdateComponent } from './table-of-prizes-update.component';
 import { TableOfPrizesDeleteDialogComponent } from './table-of-prizes-delete-dialog.component';
 import { tableOfPrizesRoute } from './table-of-prizes.route';
@@ -14,7 +14,7 @@ import { tableOfPrizesRoute } from './table-of-prizes.route';
   declarations: [
     TableOfPrizesComponent,
     TableOfPrizesDetailComponent,
-    TableOfPrizesPublicComponent,
+    TableOfPrizesPreviewComponent,
     TableOfPrizesUpdateComponent,
     TableOfPrizesDeleteDialogComponent,
   ],

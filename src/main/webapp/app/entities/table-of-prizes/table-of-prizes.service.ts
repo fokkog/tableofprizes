@@ -41,8 +41,4 @@ export class TableOfPrizesService {
   recent(): Observable<EntityArrayResponseType> {
     return this.http.get<ITableOfPrizes[]>(this.publicUrl + '/recent', { observe: 'response' });
   }
-
-  view(id: number): Observable<EntityResponseType> {
-    return this.http.get<ITableOfPrizes>(`${this.publicUrl}/recent/${id}`, { observe: 'response' });
-  }
 }

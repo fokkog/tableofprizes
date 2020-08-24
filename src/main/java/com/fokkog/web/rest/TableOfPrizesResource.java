@@ -134,16 +134,4 @@ public class TableOfPrizesResource {
         Page<TableOfPrizes> list = tableOfPrizesService.findRecents();
         return ResponseEntity.ok().body(list.getContent());
     }
-
-    /**
-     * {@code GET  /public/recent-table-of-prizes} : get one recent tableOfPrizes.
-     *
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and tableOfPrizes in body.
-     */
-    @GetMapping("public/table-of-prizes/recent/{id}")
-    public ResponseEntity<TableOfPrizes> getRecentTableOfPrizes(@PathVariable Long id) {
-        log.debug("REST request to get recent tableOfPrizes");
-        Optional<TableOfPrizes> tableOfPrizes = tableOfPrizesService.findOneRecent(id);
-        return ResponseUtil.wrapOrNotFound(tableOfPrizes);
-    }
 }

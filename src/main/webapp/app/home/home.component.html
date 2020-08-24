@@ -23,7 +23,7 @@
                     <span jhiTranslate="home.notlogged.option3">You can also view a few recent tables of prizes:</span>
                     <ul>
                         <li *ngFor="let tableOfPrizes of tablesOfPrizes">
-                            <div><a [routerLink]="['/table-of-prizes', tableOfPrizes.id, 'public']">{{ tableOfPrizes.name }}</a></div>
+                            <div><a [routerLink]="['/table-of-prizes/preview']" [state]="{ tableOfPrizes: tableOfPrizes }">{{ tableOfPrizes.name }}</a></div>
                         </li>
                     </ul>
                 </div>
