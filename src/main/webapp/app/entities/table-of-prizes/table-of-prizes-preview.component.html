@@ -5,10 +5,10 @@
 
         <ng-container *ngFor="let prize of tableOfPrizes.prizes">
             <div *ngFor="let item of [].constructor(prize.quantity); let i = index"
-                class="card prizecard col-11 col-sm-5">
+                class="card m-4 px-4 pt-4 col-11 col-sm-5 shadow-lg" style="border: 2px solid">
                 <img class="card-img-top" [src]="prize.image?.url">
                 <div class="card-body">
-                    <h2 class="card-title">{{ prize.image?.name }} - #{{ i + 1 }}</h2>
+                    <h4 class="card-title">{{ prize.image?.name }} - #{{ i + 1 }}</h4>
                 </div>
             </div>
         </ng-container>
