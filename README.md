@@ -6,7 +6,7 @@
 
 Once ready, this application intends to support a **virtual table of prizes**.
 
-Festive events like bridge (the card game) drives traditionally present a physical table of prizes. These days all bridge has moved to the Internet and so should the rewards, however after a quick scan I could not find an existing website for this. Hence I registered [www.prijzentafel.nl](https://www.prijzentafel.nl/) and [www.tableofprizes.com](https://www.tableofprizes.com/) and initiated this project.
+Festive events like bridge (the card game) drives traditionally present a physical table of prizes. These days all bridge has moved to the Internet and so should the rewards, however after a quick scan I could not find an existing website for this. Hence I registered [www.prijzentafel.nl](https://www.prijzentafel.nl/) and [www.tableofprizes.com](https://www.tableofprizes.com/) and initiated this project. Note: at the moment these domains are unresponsive as I found the Azure running costs too steep, see also below.
 
 Of course the real goal is to learn stuff, mainly:
 
@@ -14,9 +14,9 @@ Of course the real goal is to learn stuff, mainly:
 - OpenID Connect (OIDC) and its support in Azure
 - GitHub, specifically GitHub Actions for CI
 
-The application is public, but it will have to identify table managers and prize winners. For this I would prefer to rely on existing social accounts like Google/Microsoft. Hence my interest in OIDC, specifically as supported by Azure B2C Tenants.
+The application is public by nature, but it will have to identify table managers and prize winners. For this I would prefer to rely on existing social accounts like Google/Microsoft. Hence my interest in OIDC, specifically as supported by Azure B2C Tenants.
 
-To bootstrap the new project I could have used [Spring Initializr](https://start.spring.io/), but I decided to go one step further and use [JHipster](https://www.jhipster.tech/). Not sure how hip this really is nowadays, but it gives me solid and secure foundation consisting of an Angular front-end and a Spring Boot back-end. See [.yo-rc.json](.yo-rc.json) for initial choices.
+To bootstrap the new project I could have used [Spring Initializr](https://start.spring.io/), but I decided to go one step further and use [JHipster](https://www.jhipster.tech/). Not sure how hip this really is nowadays, but it gives me a solid and secure foundation consisting of an Angular front-end and a Spring Boot back-end. See [.yo-rc.json](.yo-rc.json) for initial choices.
 
 This project will consume some of my spare time, maybe for the coming hours/maybe for the coming years. It's about the journey, not the destination. By nature I am a back-end developer, so I would be very surprised if it ends in something good-looking and user-friendly :smiley:
 
